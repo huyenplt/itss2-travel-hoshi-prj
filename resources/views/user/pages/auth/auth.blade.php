@@ -1,38 +1,44 @@
 @extends('user.layout.index')
 
 @section('title')
-    <title>Login</title>
+    <title>Login/Sign in</title>
 @show
 
 @section('content')
 <h2>Sign in/up Form</h2>
-<div class="container" id="container">
+@include('user.pages.components.helper.alert')
+<div class="container <?= session('type') ? 'right-panel-active' : '' ?>" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form action="{{route('user.signup')}}" method="POST">
+			@csrf
 			<h1>Create Account</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="bi bi-facebook"></i></i></a>
-				<a href="#" class="social"><i class="bi bi-google"></i></i></a>
-				<a href="#" class="social"><i class="bi bi-linkedin"></i></a>
-			</div>
-			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<input type="text" name="name" placeholder="Name" />
+			@if($errors->has('name'))
+				<div class="text-danger w-100 text-start">{{ $errors->first('name') }}</div>
+			@endif
+			<input type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
+			@if($errors->has('email'))
+				<div class="text-danger w-100 text-start">{{ $errors->first('email') }}</div>
+			@endif
+			<input type="password" name="password" placeholder="Password" />
+			@if($errors->has('password'))
+				<div class="text-danger w-100 text-start">{{ $errors->first('password') }}</div>
+			@endif
 			<button>Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form action="{{route('user.login')}}" method="POST">
+			@csrf
 			<h1>Sign in</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="bi bi-facebook"></i></i></a>
-				<a href="#" class="social"><i class="bi bi-google"></i></i></a>
-				<a href="#" class="social"><i class="bi bi-linkedin"></i></a>
-			</div>
-			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<input type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
+			@if($errors->has('email'))
+				<div class="text-danger w-100 text-start">{{ $errors->first('email') }}</div>
+			@endif
+			<input type="password" name="password" placeholder="Password" />
+			@if($errors->has('password'))
+				<div class="text-danger w-100 text-start">{{ $errors->first('password') }}</div>
+			@endif
 			<a href="#">Forgot your password?</a>
 			<button>Sign In</button>
 		</form>
