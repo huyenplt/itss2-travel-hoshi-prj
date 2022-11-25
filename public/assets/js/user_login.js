@@ -1,11 +1,19 @@
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
+$(document).ready(function(){
+	const signUpButton = $('#signUp');
+	const signInButton = $('#signIn');
+	const container = $('#container');
 
-signUpButton.addEventListener('click', () => {
-	container.classList.add("right-panel-active");
-});
+	$("sign-up-container").css("animation", "show 0.6s");
 
-signInButton.addEventListener('click', () => {
-	container.classList.remove("right-panel-active");
+	signUpButton.click(() => {
+		container.addClass("right-panel-active");
+		$('.sign-in-container input').prop('disabled', true);
+		$('.sign-up-container input').prop('disabled', false);
+	});
+
+	signInButton.click(() => {
+		container.removeClass("right-panel-active");
+		$('.sign-in-container input').prop('disabled', false);
+		$('.sign-up-container input').prop('disabled', true);
+	});
 });

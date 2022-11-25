@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/user/login', [AuthController::class, 'userAuth']);
+Route::prefix('user')->group(function () {
+    Route::get('/', [AuthController::class, 'userAuth'])->name('user');
+    Route::post('login', [AuthController::class, 'userLogin'])->name('user.login');
+    Route::post('signup', [AuthController::class, 'userSignUp'])->name('user.signup');
+});
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
