@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,5 +42,35 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'role' => Role::class,
     ];
+
+    const ROLE_USER = 0;
+    const ROLE_ADMIN = 1;
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
+
+    public function userPlaceFavourites()
+    {
+        return $this->hasMany(UserPlaceFavourite::class);
+    }
+
+    public function userBlogFavourites()
+    {
+        return $this->hasMany(UserBlogFavourite::class);
+    }
+
+    public function userBlogVotes()
+    {
+        return $this->hasMany(UserBlogVote::class);
+    }
+
+    public function userBlogComments()
+    {
+        return $this->hasMany(UserBlogComment::class);
+    }
+
 }
