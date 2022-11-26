@@ -18,8 +18,9 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
         return $place->update($data);
     }
 
-    public function remove(array $ids = []) : bool
+    public function remove(string $id): bool
     {
-        return Place::whereIn('id', $ids)->delete();
+        $place = Place::findOrFail($id);
+        return $place->delete();;
     }
 }
