@@ -8,5 +8,5 @@ interface PlaceService
 {
     public function create(array $data) : Place;
     public function update(Place $place, array $data) : bool;
-    public function remove(array $ids = []) : bool;
+    public function remove(string $id) : bool;
 }
