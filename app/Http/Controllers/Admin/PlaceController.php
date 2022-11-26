@@ -20,7 +20,7 @@ class PlaceController extends Controller
     public function index() {
         $places = Place::all();
 
-        return view('place.index', compact('places'));
+        return view('dashboard', compact('places'));
     }
 
     public function create() {

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PlaceController;
 
 /*
@@ -20,7 +20,9 @@ Route::get('', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'postLogin'])->name('post.login');
 
 Route::middleware(['role:admin'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+    Route::get('/users', [PageController::class, 'user'])->name('user');
+    Route::get('/blogs', [PageController::class, 'blog'])->name('blog');
 
     // place
     Route::get('/places', [PlaceController::class, 'index'])->name('place.index');
