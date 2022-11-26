@@ -15,3 +15,11 @@ use App\Http\Controllers\User\HomeController;
 |
 */
 
+// Route::prefix('user')->group(function () {
+//     Route::get('/', [AuthController::class, 'userAuth'])->name('user');
+//     Route::post('login', [AuthController::class, 'userLogin'])->name('user.login');
+//     Route::post('signup', [AuthController::class, 'userSignUp'])->name('user.signup');
+//     Route::get('/home', [HomeController::class, 'index'])->name('user.home');
+// });
+
+
