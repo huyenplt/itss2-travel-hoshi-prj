@@ -74,4 +74,8 @@ class User extends Authenticatable
         return $this->hasMany(UserBlogComment::class);
     }
 
+    public function isRole($role)
+    {
+        return $this->role->name == $role;
+    }
 }
