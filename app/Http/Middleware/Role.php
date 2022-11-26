@@ -28,6 +28,6 @@ class Role
             return $next($request);
         }
 
-        return redirect('user');
+        return redirect($role);
     }
 }

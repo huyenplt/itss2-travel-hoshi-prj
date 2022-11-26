@@ -11,18 +11,18 @@ use App\Enums\Role;
 
 class AuthController extends Controller
 {
-    private $userService;
+    protected $userService;
 
     public function __construct(UserServiceImpl $userService)
     {
         $this->userService = $userService;
     }
 
-    public function userAuth () {
+    public function auth () {
         return view('user.pages.auth.auth');
     }
 
-    public function userLogin (LoginRequest $request)
+    public function login (LoginRequest $request)
     {
         $validated = $request->validated();
 
@@ -35,7 +35,7 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    public function userSignUp (SignUpRequest $request)
+    public function signUp (SignUpRequest $request)
     {
         $validated = $request->validated();
         $validated['role'] = Role::user;
