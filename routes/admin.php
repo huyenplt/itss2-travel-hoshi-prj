@@ -32,7 +32,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::post('/places/create', [PlaceController::class, 'store'])->name('place.store');
     Route::get('/places/{place}', [PlaceController::class, 'edit'])->name('place.edit');
     Route::post('/places/{place}', [PlaceController::class, 'update'])->name('place.update');
-    Route::get('/places/delete/{place}', [PlaceController::class, 'delete'])->name('place.delete');
+    Route::post('/places/delete/{place}', [PlaceController::class, 'delete'])->name('place.delete');
 });
 
 

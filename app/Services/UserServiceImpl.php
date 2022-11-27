@@ -9,19 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserServiceImpl extends BaseServiceImpl implements UserService
 {
+    public function __construct(User $user)
+    {
+        $this->model = $user;
+    }
+
     public function create(array $data) : User
     {
         $data['password'] = Hash::make($data['password']);
-        return User::create($data);
-    }
-
-    public function update(User $user, array $data) : bool
-    {
-        return $user->update($data);
-    }
-
-    public function remove(array $ids = []) : bool
-    {
-        return User::whereIn('id', $ids)->delete();
+        return $this->model->create($data);
     }
 }
