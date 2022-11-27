@@ -33,4 +33,10 @@ class AuthController extends Controller
             'error' => 'Email or password not correct',
         ])->onlyInput('email');
     }
+
+    public function logout () {
+        Auth::logout();
+
+        return redirect()->route('admin.logout');
+    }
 }

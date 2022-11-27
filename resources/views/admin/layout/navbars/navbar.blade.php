@@ -34,9 +34,9 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <form id="logout-form" action="" method="POST">
+                    <form id="logout-form" action="{{route('admin.logout')}}" method="get">
                         @csrf
-                        <a class="text-danger" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Log out') }} </a>
+                        <a class="text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Log out') }} </a>
                     </form>
                 </li>
             </ul>

@@ -335,7 +335,7 @@ input:focus {
 
 .sidebar,
 body>.navbar-collapse {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -702,6 +702,7 @@ body>.navbar-collapse[data-color="purple"]:after {
 }
 
 .main-panel>.content {
+    margin-top: 61px;
     padding: 30px 15px;
     min-height: calc(100% - 123px);
 }
@@ -1983,12 +1984,15 @@ fieldset[disabled] .form-control {
 }
 
 .navbar {
+    position: fixed;
+    right: 0;
+    left: 260px;
     border: 0;
     font-size: 16px;
     border-radius: 0;
     min-height: 50px;
     max-height: 61px;
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
