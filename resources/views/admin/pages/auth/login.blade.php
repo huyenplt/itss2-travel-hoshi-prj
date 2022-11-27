@@ -1,4 +1,4 @@
-@extends('user.layout.index')
+@extends('admin.layout.auth')
 
 @section('title')
     <title>Login</title>

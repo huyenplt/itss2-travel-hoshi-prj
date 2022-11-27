@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\PlaceController;
 
 /*
@@ -21,6 +23,8 @@ Route::post('/login', [AuthController::class, 'postLogin'])->name('post.login');
 
 Route::middleware(['role:admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/users', [UserController::class, 'index'])->name('user');
+    Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
 
     // place
     Route::get('/places', [PlaceController::class, 'index'])->name('place.index');
