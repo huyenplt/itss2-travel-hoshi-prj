@@ -33,6 +33,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/places/{place}', [PlaceController::class, 'edit'])->name('place.edit');
     Route::post('/places/{place}', [PlaceController::class, 'update'])->name('place.update');
     Route::post('/places/delete/{place}', [PlaceController::class, 'delete'])->name('place.delete');
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 

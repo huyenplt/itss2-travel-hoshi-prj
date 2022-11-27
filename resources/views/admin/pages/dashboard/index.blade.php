@@ -5,7 +5,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                <div class="col-md-12">
                     <div class="card card-plain table-plain-bg">
                         <div class="card-header ">
                             <h4 class="card-title">All places</h4>
@@ -14,16 +13,19 @@
                         <div class="card-body table-full-width table-responsive">
                             <table class="table table-hover">
                                 <thead>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
+                                    <th colspan="3">Name</th>
+                                    <th colspan="6">Address</th>
+                                    <th colspan="3">Actions</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($places as $place)
                                     <tr>
-                                        <td>{{ $place->id}}</td>
-                                        <td>{{ $place->name }}</td>
-                                        <td>{{ $place->address }}</td>
+                                        <td colspan="3">{{ $place->name }}</td>
+                                        <td colspan="6">{{ $place->address }}</td>
+                                        <td colspan="3">
+                                            <p>Sửa</p>
+                                            <p>Xóa</p>                                     
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -31,8 +33,8 @@
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
         </div>
     </div>
+    {!! $places->links('admin.pages.components.helper.paginate') !!}
 @endsection

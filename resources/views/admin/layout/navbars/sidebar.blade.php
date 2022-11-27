@@ -24,11 +24,6 @@
                     <p>{{ __("Blog") }}</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active bg-danger" href="">
-                    <p>{{ __("Logout") }}</p>
-                </a>
-            </li>
         </ul>
     </div>
 </div>

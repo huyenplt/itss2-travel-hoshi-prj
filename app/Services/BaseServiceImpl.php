@@ -14,6 +14,11 @@ class BaseServiceImpl implements BaseService
         $this->model = $model;
     }
 
+    public function paginate(int $numberPage)
+    {
+        return $this->all()->toQuery()->paginate($numberPage);
+    }
+
     public function create(array $data): Model
     {
         return $this->model->create($data);
@@ -27,6 +32,12 @@ class BaseServiceImpl implements BaseService
     {
         return $this->model->findOrFail($id);
     }
+
+    public function all()
+    {
+        return $this->model->all();
+    }
+
 
     /**
      * @param Model $model

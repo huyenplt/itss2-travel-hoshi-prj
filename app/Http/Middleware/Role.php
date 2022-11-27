@@ -18,7 +18,7 @@ class Role
     public function handle(Request $request, Closure $next, $role)
     {
         if(!Auth::check()) {
-            return redirect('user');
+            return redirect($role);
         }
 
         $user = Auth::user();
