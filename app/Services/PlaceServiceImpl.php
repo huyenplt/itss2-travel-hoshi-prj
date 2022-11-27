@@ -8,19 +8,8 @@ use App\Services\Interfaces\PlaceService;
 
 class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
 {
-    public function create(array $data) : Place
+    public function __construct(Place $place)
     {
-        return Place::create($data);
-    }
-
-    public function update(Place $place, array $data) : bool
-    {
-        return $place->update($data);
-    }
-
-    public function remove(string $id): bool
-    {
-        $place = Place::findOrFail($id);
-        return $place->delete();;
+        $this->model = $place;
     }
 }
