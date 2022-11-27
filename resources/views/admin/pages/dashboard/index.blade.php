@@ -2,4 +2,4 @@
 
 @section('title')
     <title>Dashboard</title>
-@show
+@endsection

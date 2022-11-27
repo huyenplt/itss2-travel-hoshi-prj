@@ -19,11 +19,11 @@ class PlaceController extends Controller
     public function index() {
         $places = Place::all();
 
-        return view('place.index', compact('places'));
+        return view('admin.pages.place.index', compact('places'));
     }
 
     public function create() {
-        return view('place.create');
+        return view('admin.pages.place.create');
     }
 
     public function store(PlaceRequest $request){
@@ -41,7 +41,7 @@ class PlaceController extends Controller
     public function edit($id) {
         $place = $this->placeService->find($id);
 
-        return view('place.edit', compact('place'));
+        return view('admin.pages.place.edit', compact('place'));
     }
 
     public function update($id, PlaceRequest $request) {
@@ -50,7 +50,7 @@ class PlaceController extends Controller
         $validated = $request->validated();
 
         if ($this->placeService->update($place, $validated)) {
-            return view('place.edit', compact('place'));
+            return view('admin.pages.place.edit', compact('place'));
         }
 
         return back()->with([
