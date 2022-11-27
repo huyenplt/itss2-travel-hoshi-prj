@@ -42,10 +42,6 @@ class BaseServiceImpl implements BaseService
     {
         $model = $this->find($id);
 
-        if (!$model) {
-            return false;
-        }
-
         return $model->delete();
     }
 }

@@ -41,10 +41,6 @@ class PlaceController extends Controller
     public function edit($id) {
         $place = $this->placeService->find($id);
 
-        if (!$place) {
-            throw new \Exception("Not found");
-        }
-
         return view('place.edit', compact('place'));
     }
 
