@@ -8,18 +8,8 @@ use App\Services\Interfaces\BlogService;
 
 class BlogServiceImpl extends BaseServiceImpl implements BlogService
 {
-    public function create(array $data) : Blog
+    public function __construct(Blog $blog)
     {
-        return Blog::create($data);
-    }
-
-    public function update(Blog $blog, array $data) : bool
-    {
-        return $blog->update($data);
-    }
-
-    public function remove(array $ids = []) : bool
-    {
-        return Blog::whereIn('id', $ids)->delete();
+        $this->model = $blog;
     }
 }

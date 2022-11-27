@@ -8,18 +8,8 @@ use App\Services\Interfaces\PlaceImageService;
 
 class PlaceImageServiceImpl extends BaseServiceImpl implements PlaceImageService
 {
-    public function create(array $data) : PlaceImage
+    public function __construct(PlaceImage $placeImage)
     {
-        return PlaceImage::create($data);
-    }
-
-    public function update(PlaceImage $placeImage, array $data) : bool
-    {
-        return $placeImage->update($data);
-    }
-
-    public function remove(array $ids = []) : bool
-    {
-        return PlaceImage::whereIn('id', $ids)->delete();
+        $this->model = $placeImage;
     }
 }
