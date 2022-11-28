@@ -12,6 +12,7 @@
 	border-radius: 50%;
 	padding: 6px 12px;
 }
+
 .page-link{
 	z-index: 3;
 	color: #00ACD6 !important;
@@ -20,16 +21,24 @@
 	border-radius: 50%;
 	padding: 6px 12px !important;
 }
+
 .page-item:first-child .page-link{
 	border-radius: 30% !important;
 }
+
 .page-item:last-child .page-link{
 	border-radius: 30% !important;   
 }
+
 .pagination li{
 	padding: 3px;
 }
+
 .disabled .page-link{
 	color: #212529 !important;
 	opacity: 0.5 !important;
+}
+
+.border-bottom {
+	border-bottom: 1px solid #868e96!important;;
 }
