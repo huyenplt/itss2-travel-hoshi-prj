@@ -12,4 +12,19 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
     {
         $this->model = $place;
     }
+
+    public function getAddressPlace() 
+    {
+        $addresses = $this->model
+            ->select('address')
+            ->groupBy('address');
+
+        return $addresses;
+    }
+
+    public function getPlaceByAddressName (string $addressName) {
+        $places = $this->model->where('address', 'like', '%' . $addressName . '%')->get();
+
+        return $places;
+    }
 }

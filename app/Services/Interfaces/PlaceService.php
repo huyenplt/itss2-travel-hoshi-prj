@@ -2,8 +2,8 @@
 
 namespace App\Services\Interfaces;
 
-use App\Models\Place;
-
 interface PlaceService
 {
+    public function getAddressPlace();
+    public function getPlaceByAddressName (string $addressName);
 }
