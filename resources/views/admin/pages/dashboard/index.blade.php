@@ -8,7 +8,7 @@
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header">
                             <div class="row">
-                                <h4 class="col card-title">All places {{ old('name', auth()->user()->name) }}</h4>
+                                <h4 class="col card-title">All places</h4>
                                 <form class="col-lg-4 col-md-3 col-sm-5" method="" action="" autocomplete="off">
                                     <div class="form-group dashboard-search d-flex align-items-center">
                                         <i class="w3-xxlarge nc-icon nc-zoom-split dashboard-search__icon"></i>
