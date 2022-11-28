@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Models\Place;
 use App\Http\Controllers\Controller;
 use App\Services\PlaceServiceImpl;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -15,8 +15,15 @@ class DashboardController extends Controller
     }
     
     public function index () {
-        $places = $this->placeService->paginate(10);
+        $addresses = $this->placeService->getAddressPlace()->paginate(10);
 
-        return view('admin.pages.dashboard.index', compact('places'));
+        return view('admin.pages.dashboard.index', compact('addresses'));
+    }
+
+    public function manager (Request $request) {
+        $address = urldecode($request->query('address')) ?? null;
+        $places = $this->placeService->getPlaceByAddressName($address);
+
+        return view('admin.pages.dashboard.manager', compact('places'));
     }
 }

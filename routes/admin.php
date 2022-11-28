@@ -22,7 +22,11 @@ Route::get('', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'postLogin'])->name('post.login');
 
 Route::middleware(['role:admin'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::prefix('dashboard')->name('dashboard')->group(function () {
+        Route::get('/', [DashboardController::class, 'index']);
+        Route::get('/manager', [DashboardController::class, 'manager'])->name('.manager');
+    });
+
     Route::get('/users', [UserController::class, 'index'])->name('user');
     Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
 

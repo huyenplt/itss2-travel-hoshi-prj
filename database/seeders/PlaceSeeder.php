@@ -38,22 +38,22 @@ class PlaceSeeder extends Seeder
             ],
             [
                 'name'     => 'Bãi Sao',
-                'address'  => 'Ấp Bãi Sao, thị trấn An Thới, huyện Phú Quốc, tỉnh Kiên Giang',
+                'address'  => 'Kiên Giang',
                 'content'  => 'Bãi Sao thuộc phía Nam đảo Phú Quốc. Nơi đây được mệnh danh là bãi biển quyến rũ nhất Phú Quốc.'
             ],
             [
                 'name'     => 'Bãi Trường',
-                'address'  => 'Xã Dương Tơ, Huyện Phú Quốc, Tỉnh Kiên Giang',
+                'address'  => 'Kiên Giang',
                 'content'  => 'Bãi biển dài nhất Phú Quốc với chiều dài lên đến 20km. Bãi Trường là nơi nuôi cấy ngọc trai duy nhất tại Phú Quốc. Môi trường nước thuận lợi. Khi ghé thăm Bãi Trường, bạn có thể tắm biển, lặn ngắm san hô, ngắm hoàng hôn và thưởng thức những món ăn hải sản tươi sống hấp dẫn.'
             ],
             [
                 'name'     => 'Hòn Móng tay',
-                'address'  => 'Xã Dương Hòa, huyện Kiên Lương, phía Nam đảo Phú Quốc, tỉnh Kiên Giang',
+                'address'  => 'Kiên Giang',
                 'content'  => 'Trải qua bao thăng trầm của cuộc sống, Hòn Móng tay vẫn giữ được nét đẹp tự nhiên vốn có của mình. Đây chính là điểm nhấn ấn tượng thu hút rất nhiều khách du lịch ghé thăm. Bên cạnh đó, Hòn Móng tay còn thuộc top 5 Hòn đẹp nhất tại Phú Quốc. Với làn nước xanh ngắt, nhìn thấy cả màu sắc của những rạn san hô lấp ló dưới biển. Ngoài ra, trên đảo còn có một loại cây gọi là sơn hải tùng (cây móng tay) rất đáng để bạn chiêm ngưỡng.'
             ],
             [
                 'name'     => 'Núi Hàm Lợn',
-                'address'  => 'Sóc Sơn, Hà Nội',
+                'address'  => 'Hà Nội',
                 'content'  => 'Nơi đây có cảnh quan đẹp, không khí trong lành, yên bình thích hợp với những buổi dã ngoại hay cắm trại của những gia đình hoặc nhóm bạn bè. Ngoài ra tại đây cũng có địa hình đa dạng, khí hậu dễ chịu thích hợp là nơi nghỉ ngơi vui chơi và thư giãn của du khách trong chuyến tham quan du lịch của mình.'
             ],
             [
