@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         $this->placeService = $placeService;
     }
-    
+
     public function index () {
         $addresses = $this->placeService->getAddressPlace()->paginate(10);
 
@@ -25,5 +25,9 @@ class DashboardController extends Controller
         $places = $this->placeService->getPlaceByAddressName($address);
 
         return view('admin.pages.dashboard.manager', compact('places'));
+    }
+
+    public function detail () {
+        return view('admin.pages.dashboard.detail');
     }
 }

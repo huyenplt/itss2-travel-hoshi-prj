@@ -15,22 +15,12 @@
                 </li>
             </ul>
             <ul class="navbar-nav   d-flex align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <span class="no-icon">{{ __('Account') }}</span>
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="no-icon">{{ __('Dropdown') }}</span>
+                        <span class="no-icon">{{ auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">{{ __('Action') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Another action') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Something') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Something else here') }}</a>
-                        <div class="divider"></div>
-                        <a class="dropdown-item" href="#">{{ __('Separated link') }}</a>
+                        <a class="dropdown-item" href="#">{{ __('Profile') }}</a>
                     </div>
                 </li>
                 <li class="nav-item">
