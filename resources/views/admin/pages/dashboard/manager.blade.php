@@ -9,11 +9,9 @@
             <div class="col-md-6">
                 <div class="form-group pt-5">
                     <div class="row">
-                        <div class="col-6">
-                            <input type="text" name="" id="" class="form-control" placeholder="{{ __('Name Location') }}" value="" required>
-                        </div>
-                        <div class="mr-1 col-2">
-                            <button type="submit" class="btn btn-default">{{ __('Search') }}</button>
+                        <div class="col-6 search">
+                            <input type="text" id="search" class="form-control" placeholder="{{ __('Search location') }}">
+                            <i class="bi bi-search icon-search"></i>
                         </div>
                         <div class="col-2">
                             <button type="submit" class="btn btn-default">{{ __('Add Location') }}</button>

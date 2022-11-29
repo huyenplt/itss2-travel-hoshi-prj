@@ -10,4 +10,12 @@ $(document).ready(function($) {
             $('.place-info').load(url)
         }
     })
+
+    $('#search').on('input', function(event) {
+        if (event.target.value !== '') {
+            $('.icon-search').addClass('hide')
+        } else {
+            $('.icon-search').removeClass('hide')
+        }
+    })
 });
