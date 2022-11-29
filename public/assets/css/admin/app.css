@@ -102,3 +102,18 @@ p.detail {
     text-overflow: ellipsis;
     overflow:hidden;
 }
+
+.hide {
+    display: none;
+}
+
+.search {
+    position: relative;
+}
+
+.icon-search {
+    position: absolute;
+    right: 27px;
+    color: #d3cfcf;
+    top: 8px;
+}

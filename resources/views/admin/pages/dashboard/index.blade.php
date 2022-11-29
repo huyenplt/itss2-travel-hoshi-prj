@@ -13,7 +13,7 @@
                                 <form class="col-lg-4 col-md-3 col-sm-5" method="" action="" autocomplete="off">
                                     <div class="form-group dashboard-search d-flex align-items-center">
                                         <i class="w3-xxlarge nc-icon nc-zoom-split dashboard-search__icon"></i>
-                                        <input type="text" name="" id="" class="form-control dashboard-search__input" placeholder="{{ __('Search') }}" autofocus>
+                                        <input type="text" id="search" class="form-control dashboard-search__input" placeholder="{{ __('Search') }}" autofocus>
                                     </div>
                                 </form>
                             </div>
