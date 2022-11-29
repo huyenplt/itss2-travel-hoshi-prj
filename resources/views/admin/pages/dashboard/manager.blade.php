@@ -4,27 +4,18 @@
     <div class="content">
         <div class="row">
             <div class="card col-md-6 place-info">
-                <div class="card-body">
-                    <h5 class="title">{{ __('Ha Noi') }}</h5>
-                    <img src="https://deviet.vn/wp-content/uploads/2019/04/vuong-quoc-anh.jpg" />
-                    <p class="pt-2">description heredescription heredescrdescription heredescription heredescrdescription heredescription heredescrdescription heredescription heredescrdescription heredescription heredescription heredescription heredescription here</p>
-                    <div class="text-center">
-                        <a href="{{route('admin.dashboard.detail')}}">
-                            <button type="" class="btn btn-default mt-4">{{ __('Localtion Detail') }}</button>
-                        </a>
-                    </div>
-                </div>
+              
             </div>
             <div class="col-md-6">
                 <div class="form-group pt-5">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-6">
                             <input type="text" name="" id="" class="form-control" placeholder="{{ __('Name Location') }}" value="" required>
                         </div>
-                        <div class="mr-1">
+                        <div class="mr-1 col-2">
                             <button type="submit" class="btn btn-default">{{ __('Search') }}</button>
                         </div>
-                        <div class="">
+                        <div class="col-2">
                             <button type="submit" class="btn btn-default">{{ __('Add Location') }}</button>
                         </div>
                     </div>
@@ -37,7 +28,7 @@
                         </thead>
                         <tbody>
                             @foreach ($places as $place)
-                            <tr>
+                            <tr data-url="{{route('admin.dashboard.place', $place->id)}}">
                                 <td style="width:100%">{{ $place->name }}</td>
                             </tr>
                             @endforeach
@@ -47,4 +38,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script src="{{asset('assets/js/admin/dashboard/manager.js')}}"></script>
 @endsection

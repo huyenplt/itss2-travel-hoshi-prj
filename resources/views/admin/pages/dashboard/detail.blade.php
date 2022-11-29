@@ -7,8 +7,9 @@
                 <div class="col-md-6">
                     <img src="https://deviet.vn/wp-content/uploads/2019/04/vuong-quoc-anh.jpg" />
                 </div>
-                <div class="col-md-6 d-flex align-items-center">
-                    description heredescription heredescrdescription heredescription heredescrdescription heredescription heredescrdescription heredescription heredescrdescription heredescription heredescription heredescription heredescription here
+                <div class="col-md-6 align-items-center">
+                    <h5 class="font-weight-bold">{{$place->name}}</h5>
+                    {{$place->content}}
                 </div>
             </div>
             <div class="row pt-4">
