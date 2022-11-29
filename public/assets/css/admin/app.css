@@ -83,3 +83,22 @@
 .btn-custom.prev-btn {
     transform: rotate(180deg);
 }
+
+img {
+    width: 100%;
+}
+
+.table-hover tr:hover {
+    cursor: pointer;
+}
+
+p.detail {
+    display: block;
+    display: -webkit-box;
+    max-height: 74px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    visibility: visible;
+    text-overflow: ellipsis;
+    overflow:hidden;
+}

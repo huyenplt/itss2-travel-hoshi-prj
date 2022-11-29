@@ -17,6 +17,7 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="{{ asset('light-bootstrap/css/demo.css') }}" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('assets/css/admin/app.css')}}" />
+        @yield('css')
     </head>
 
     <body>
@@ -49,6 +50,7 @@
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('light-bootstrap/js/demo.js') }}"></script>
     <script src="{{asset('assets/js/admin/app.js')}}"></script>
+    @yield('js')
     @stack('js')
     <script>
     </script>
