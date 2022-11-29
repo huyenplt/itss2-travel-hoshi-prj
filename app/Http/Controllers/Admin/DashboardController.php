@@ -42,4 +42,13 @@ class DashboardController extends Controller
 
         return view('admin.pages.dashboard.place', compact('place'));
     }
+
+    public function delete ($id = null) 
+    {
+        if ($this->placeService->delete($id)) {
+            return redirect()->route('admin.dashboard')->with('success', 'Delete success');
+        }
+
+        return back()->with('error', 'Delete failed!');
+    }
 }

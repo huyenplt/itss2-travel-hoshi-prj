@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="content">
+        @include('admin.pages.components.helper.alert')
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
@@ -22,7 +23,9 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-center">
-                    <button type="" class="btn btn-default">{{ __('Delete') }}</button>
+                    <button type="" class="btn btn-default">
+                        <a href="{{route('admin.dashboard.place.delete', $place->id)}}">{{ __('Delete') }}</a>
+                    </button>
                     <button type="" class="btn btn-default">{{ __('Save') }}</button>
                 </div>
             </div>
