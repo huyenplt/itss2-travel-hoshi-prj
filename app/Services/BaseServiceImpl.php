@@ -51,7 +51,11 @@ class BaseServiceImpl implements BaseService
 
     public function delete(int $id): bool
     {
-        $model = $this->find($id);
+        $model = $this->model->find($id);
+
+        if (!$model) {
+            return false;
+        }
 
         return $model->delete();
     }
