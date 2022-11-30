@@ -25,6 +25,7 @@ Route::middleware(['role:admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index']);
         Route::get('/manager', [DashboardController::class, 'manager'])->name('.manager');
         Route::get('/detail/{id}', [DashboardController::class, 'detail'])->name('.detail');
+        Route::get('/form', [DashboardController::class, 'create'])->name('.place.form');
         Route::get('/place/{id}', [DashboardController::class, 'place'])->name('.place');
         Route::get('/place/delete/{id}', [DashboardController::class, 'delete'])->name('.place.delete');
     });

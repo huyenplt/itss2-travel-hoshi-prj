@@ -14,14 +14,14 @@ class DashboardController extends Controller
         $this->placeService = $placeService;
     }
 
-    public function index () 
+    public function index ()
     {
         $addresses = $this->placeService->getAddressPlace()->paginate(10);
 
         return view('admin.pages.dashboard.index', compact('addresses'));
     }
 
-    public function manager (Request $request) 
+    public function manager (Request $request)
     {
         $address = urldecode($request->query('address')) ?? null;
         $places = $this->placeService->getPlaceByAddressName($address);
@@ -29,21 +29,21 @@ class DashboardController extends Controller
         return view('admin.pages.dashboard.manager', compact('places'));
     }
 
-    public function detail ($id = null) 
+    public function detail ($id = null)
     {
         $place = $this->placeService->find($id);
 
         return view('admin.pages.dashboard.detail', compact('place'));
     }
 
-    public function place ($id = null) 
+    public function place ($id = null)
     {
         $place = $this->placeService->find($id);
 
         return view('admin.pages.dashboard.place', compact('place'));
     }
 
-    public function delete ($id = null) 
+    public function delete ($id = null)
     {
         if ($this->placeService->delete($id)) {
             return redirect()->route('admin.dashboard')->with('success', 'Delete success');
@@ -51,4 +51,9 @@ class DashboardController extends Controller
 
         return back()->with('error', 'Delete failed!');
     }
+
+    public function create () {
+        return view('admin.pages.dashboard.form');
+    }
+
 }
