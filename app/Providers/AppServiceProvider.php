@@ -42,16 +42,16 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    public function loadHelpers()
-    {
-        require_once __DIR__.'/../Supports/Constants.php';
-    }
+//    public function loadHelpers()
+//    {
+//        require_once __DIR__.'/../Supports/Constants.php';
+//    }
 
-    protected function loadFacades()
-    {
-        $aliasLoader = AliasLoader::getInstance();
-        $aliasLoader->alias('AppHelper', Helper::class);
-    }
+//    protected function loadFacades()
+//    {
+//        $aliasLoader = AliasLoader::getInstance();
+//        $aliasLoader->alias('AppHelper', Helper::class);
+//    }
 
     /**
      * Bootstrap any application services.
@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadHelpers();
-        $this->loadFacades();
+//        $this->loadHelpers();
+//        $this->loadFacades();
     }
 }
