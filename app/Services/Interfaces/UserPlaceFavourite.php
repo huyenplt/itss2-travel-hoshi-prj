@@ -2,6 +2,8 @@
 
 namespace App\Services\Interfaces;
 
-interface UserPlaceFavouriteService
+use App\Services\Interfaces\BaseService;
+
+interface UserPlaceFavouriteService extends BaseService
 {
 }

@@ -1,7 +1,8 @@
 <?php
-
 namespace App\Services\Interfaces;
 
-interface BlogImageService
+use App\Services\Interfaces\BaseService;
+
+interface BlogImageService extends BaseService
 {
 }

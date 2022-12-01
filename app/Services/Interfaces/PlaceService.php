@@ -2,7 +2,9 @@
 
 namespace App\Services\Interfaces;
 
-interface PlaceService
+use App\Services\Interfaces\BaseService;
+
+interface PlaceService extends BaseService
 {
     public function getAddressPlace();
     public function getPlaceByAddressName (string $addressName);
