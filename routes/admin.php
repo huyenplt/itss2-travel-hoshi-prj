@@ -28,6 +28,8 @@ Route::middleware(['role:admin'])->group(function () {
         Route::get('/form', [DashboardController::class, 'create'])->name('.place.form');
         Route::get('/place/{id}', [DashboardController::class, 'place'])->name('.place');
         Route::get('/place/delete/{id}', [DashboardController::class, 'delete'])->name('.place.delete');
+        Route::get('/create', [DashboardController::class, 'create'])->name('.place.create');
+        Route::post('/store', [DashboardController::class, 'store'])->name('.place.store');
     });
 
     Route::get('/users', [UserController::class, 'index'])->name('user');
