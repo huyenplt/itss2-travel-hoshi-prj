@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Place;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PlaceRequest extends FormRequest
@@ -26,7 +27,8 @@ class PlaceRequest extends FormRequest
         return [
             'name'    => 'required|max:255',
             'address' => 'required|max:255',
-            'content' => 'required'
+            'content' => 'required',
+            'file_path' => 'required',
         ];
     }
 
@@ -38,6 +40,12 @@ class PlaceRequest extends FormRequest
             'address.required' => 'Address is required!',
             'address.max'      => 'Address max 255 characters',
             'content.required' => 'Content is required!',
+            'file_path.required' => 'Images is required!',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        return back()->with('error', ' create new place failed!');
     }
 }
