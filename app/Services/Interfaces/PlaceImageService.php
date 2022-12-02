@@ -2,6 +2,6 @@
 
 namespace App\Services\Interfaces;
 
-interface PlaceImageService
+interface PlaceImageService extends BaseService
 {
 }

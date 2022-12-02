@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Place\PlaceRequest;
-use App\Services\PlaceServiceImpl;
+use App\Services\Interfaces\PlaceService;
 use Illuminate\Http\Request;
-use App\Models\Place;
 use App\Services\Interfaces\PlaceImageService;
 
 class DashboardController extends Controller
@@ -14,7 +12,7 @@ class DashboardController extends Controller
 
     protected $placeImagesService;
 
-    public function __construct(PlaceServiceImpl $placeService, PlaceImageService $placeImagesService)
+    public function __construct(PlaceService $placeService, PlaceImageService $placeImagesService)
     {
         $this->placeService = $placeService;
         $this->placeImagesService = $placeImagesService;
@@ -51,8 +49,7 @@ class DashboardController extends Controller
 
     public function create()
     {
-        $place = new Place();
-        return view('admin.pages.dashboard.create_place',compact('place'));
+        return view('admin.pages.dashboard.create_place');
     }
 
     public function store(Request $request)

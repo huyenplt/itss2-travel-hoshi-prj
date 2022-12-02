@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h3 class="mb-0">{{ $place? __('Edit Location') :  __('Add Location')}}</h3>
+                            <h3 class="mb-0">{{__('Add Location')}}</h3>
                         </div>
                     </div>
                 </div>
