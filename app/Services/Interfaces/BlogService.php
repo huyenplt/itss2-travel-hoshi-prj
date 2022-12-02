@@ -2,6 +2,6 @@
 
 namespace App\Services\Interfaces;
 
-interface BlogService
+interface BlogService extends BaseService
 {
 }
