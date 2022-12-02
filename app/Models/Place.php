@@ -9,6 +9,13 @@ class Place extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'address',
+        'content'
+    ];
+
+
     protected $guarded = [];
 
     protected $casts = [];

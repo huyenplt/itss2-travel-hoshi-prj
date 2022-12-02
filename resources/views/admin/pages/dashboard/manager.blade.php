@@ -14,7 +14,7 @@
                             <i class="bi bi-search icon-search"></i>
                         </div>
                         <div class="col-2">
-                            <button type="submit" class="btn btn-default">{{ __('Add Location') }}</button>
+                            <button type="submit" class="btn btn-default"><a href="{{route('admin.dashboard.place.create', ['address' => urlencode($address)])}}">{{ __('Add Location') }}</a></button>
                         </div>
                     </div>
                 </div>
