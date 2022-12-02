@@ -6,8 +6,11 @@ use App\Http\Requests\Admin\Place\PlaceRequest;
 use App\Services\Interfaces\PlaceService;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\PlaceImageService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+
+use function Psy\debug;
 
 class DashboardController extends Controller
 {
@@ -68,7 +71,7 @@ class DashboardController extends Controller
                 'content' => $validated['content']
             ]);
 
-            $file_path = $request->file('file_path')->store('');
+            $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
             $request->file('file_path')->move(public_path('/assets/images'), $file_path);
     
             $this->placeImagesService->create([
