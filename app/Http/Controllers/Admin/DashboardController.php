@@ -10,8 +10,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-use function Psy\debug;
-
 class DashboardController extends Controller
 {
     protected $placeService;

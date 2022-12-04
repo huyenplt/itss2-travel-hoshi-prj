@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,6 @@ Route::post('signup', [AuthController::class, 'signUp'])->name('signup');
 
 Route::middleware(['role:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::post('/blog/create', [BlogController::class, 'store'])->name('blog.store');
 });
 
