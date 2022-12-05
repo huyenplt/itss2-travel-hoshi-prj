@@ -15,7 +15,6 @@ class Place extends Model
         'content'
     ];
 
-
     protected $guarded = [];
 
     protected $casts = [];

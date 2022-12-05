@@ -6,6 +6,7 @@
 @endsection
 
 @section('content')
+    @include('user.pages.components.helper.alert')
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#blog-modal">
         Create blog
     </button>

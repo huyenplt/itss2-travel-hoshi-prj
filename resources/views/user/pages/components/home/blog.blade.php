@@ -4,8 +4,11 @@
             <div class="modal-body">
                 <h5 class="modal-title text-center mb-3" id="exampleModalLabel">Create blog</h5>
                 <p>{{__(Auth::user()->name)}}</p>
-                <form action="{{route('user.blog.store')}}" method="post">
+                <form action="{{route('user.blog.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <label>Title</label>
+                    <input type="text" name="title" class="mb-2"/>
+                    <div><label>Content</label></div>
                     <div class="d-content" class="mb-2">
                         <div contentEditable="true" id="content" class="mb-2">
                         </div>

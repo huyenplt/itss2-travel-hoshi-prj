@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Log;
 class DashboardController extends Controller
 {
     protected $placeService;
-
     protected $placeImagesService;
 
     public function __construct(PlaceService $placeService, PlaceImageService $placeImagesService)
@@ -70,7 +69,7 @@ class DashboardController extends Controller
             ]);
 
             $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
-            $request->file('file_path')->move(public_path('/assets/images'), $file_path);
+            $request->file('file_path')->move(public_path('/assets/images/place'), $file_path);
     
             $this->placeImagesService->create([
                 'place_id' => $place->id,
