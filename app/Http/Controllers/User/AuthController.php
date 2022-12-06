@@ -5,15 +5,15 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Auth\LoginRequest;
 use App\Http\Requests\User\Auth\SignUpRequest;
-use App\Services\UserServiceImpl;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
+use App\Services\Interfaces\UserService;
 
 class AuthController extends Controller
 {
     protected $userService;
 
-    public function __construct(UserServiceImpl $userService)
+    public function __construct(UserService $userService)
     {
         $this->userService = $userService;
     }

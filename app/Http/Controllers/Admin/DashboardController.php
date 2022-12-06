@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Place\PlaceRequest;
-use App\Services\PlaceServiceImpl;
+use App\Services\Interfaces\PlaceService;
 use Illuminate\Http\Request;
-use App\Models\Place;
 use App\Services\Interfaces\PlaceImageService;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Models\Place;
 
 class DashboardController extends Controller
 {
     protected $placeService;
-
     protected $placeImagesService;
 
-    public function __construct(PlaceServiceImpl $placeService, PlaceImageService $placeImagesService)
+    public function __construct(PlaceService $placeService, PlaceImageService $placeImagesService)
     {
         $this->placeService = $placeService;
         $this->placeImagesService = $placeImagesService;
@@ -32,7 +34,7 @@ class DashboardController extends Controller
         $address = urldecode($request->query('address')) ?? null;
         $places = $this->placeService->getPlaceByAddressName($address);
 
-        return view('admin.pages.dashboard.manager', compact('places'));
+        return view('admin.pages.dashboard.manager', compact('address', 'places'));
     }
 
     public function detail ($id = null)
@@ -49,35 +51,74 @@ class DashboardController extends Controller
         return view('admin.pages.dashboard.place', compact('place'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $place = new Place();
-        return view('admin.pages.dashboard.create_place');
+        $address = urldecode($request->query('address')) ?? '';
+
+        return view('admin.pages.dashboard.create_place', compact('address'));
     }
 
-    public function store(Request $request)
+    public function store(PlaceRequest $request)
     {
-        if( $placeRequest = $this->placeService->create($request->only(['name', 'address', 'content'])))
-        $image = $request->file('image')->store('public/images/'.$placeRequest->name);
-        $this->placeImagesService->create([
-            'place_id' => $placeRequest->id,
-            'file_path' => $image,
-        ]);
-        return redirect()->route('admin.dashboard')->with('success', ' create new place success');
+        DB::beginTransaction();
+        try {
+            $validated = $request->validated();
+            $place = $this->placeService->create([
+                'name' => $validated['name'],
+                'address' => $validated['address'],
+                'content' => $validated['content'],
+                'season' => $validated['season'],
+                'cost' => $validated['cost'],
+            ]);
+
+            $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
+            $request->file('file_path')->move(public_path('/assets/images/place'), $file_path);
+
+            $this->placeImagesService->create([
+                'place_id' => $place->id,
+                'file_path' => $file_path,
+            ]);
+
+            DB::commit();
+            return redirect()->route('admin.dashboard')->with('success', ' create new place success');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+        }
+
+        return back()->with('error', ' create new place failed!');
     }
 
-    public function edit($id = null)
-    {
-        $place = $this->placeService->find($id);
+    public function edit(Place $place) {
         return view('admin.pages.dashboard.edit_place', compact('place'));
     }
 
-    public function update($id = null, Request $request)
-    {
-        if( $placeRequest = $this->placeService->update($request->only(['name', 'address', 'content'])))
-        $image = $request->file('image')->store('public/images/'.$placeRequest->name);
+    public function update(PlaceRequest $request,Place $place ) {
+        DB::beginTransaction();
+        try {
+            $validated = $request->validated();
+            $place = $this->placeService->update($place, [
+                'name' => $validated['name'],
+                'address' => $validated['address'],
+                'content' => $validated['content'],
+                'season' => $validated['season'],
+                'cost' => $validated['cost'],
+            ]);
 
-        return back();
+            $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
+            $request->file('file_path')->move(public_path('/assets/images/place'), $file_path);
+
+            $this->placeImagesService->create([
+                'place_id' => $place->id,
+                'file_path' => $file_path,
+            ]);
+
+            DB::commit();
+            return redirect()->route('admin.dashboard')->with('success', ' create new place success');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+        }
     }
 
     public function delete ($id = null)

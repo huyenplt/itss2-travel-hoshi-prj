@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\Place;
+namespace App\Http\Requests\User\Blog;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PlaceRequest extends FormRequest
+class BlogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,29 +25,23 @@ class PlaceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => 'required|max:255',
-            'address' => 'required|max:255',
+            'title'    => 'required|max:255',
             'content' => 'required',
-            'season'    => 'integer',
-            'cost'    => 'integer',
-            'file_path' => 'required',
+            'file_path' => '',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required'    => 'Name is required!',
-            'name.max'         => 'Name max 255 characters',
-            'address.required' => 'Address is required!',
-            'address.max'      => 'Address max 255 characters',
+            'title.required'    => 'Title is required!',
+            'title.max'         => 'Title max 255 characters',
             'content.required' => 'Content is required!',
-            'file_path.required' => 'Images is required!',
         ];
     }
 
     protected function failedValidation(Validator $validator)
     {
-        return back()->with('error', ' create new place failed!');
+        return redirect()->route('user.home')->with('error', ' Create blog failed!');
     }
 }

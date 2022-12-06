@@ -11,7 +11,6 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        dd($user->isRole('user'));
         return view('user.pages.home.index');
     }
 }
