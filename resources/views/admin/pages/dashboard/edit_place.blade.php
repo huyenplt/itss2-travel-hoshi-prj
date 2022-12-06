@@ -1,6 +1,11 @@
 @extends('admin.layout.app', ['activePage' => 'dashboard', 'title' => 'Location', 'navName' => 'Location', 'activeButton' => 'laravel'])
 
 @section('content')
+
+@php
+    use App\Enums\Season;
+@endphp
+
     <div class="content place-form">
         <div class="container-fluid">
             <div class="row">
@@ -19,26 +24,46 @@
                             @method('PUT')
 
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                <div class="form-group">
                                     <label class="form-control-label" for="input-name">
                                         <i class="w3-xxlarge fa fa-photo mr-1"></i>{{ __('Location Photo') }}
                                     </label>
                                     <input type="file" class="form-control" name="file_path" />
                                 </div>
 
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <div class="form-group">
                                     <label class="form-control-label" for="name"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Name') }}</label>
                                     <input type="text" name="name" id="name" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Name...') }}" value="{{$place->name}}" required>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <div class="form-group">
                                     <label class="form-control-label" for="address"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Address') }}</label>
                                     <input type="text" name="address" id="address" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Address...') }}" value="{{$place->address}}" required>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                <div class="form-group">
                                     <label class="form-control-label" for="content"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Description') }}</label>
                                     <textarea name="content" id="content" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" style="height: 200px" placeholder="{{ __('Description...') }}" value="" required>{{$place->content}}</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-control-label" for="season"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Season') }}</label>
+                                    {{-- <input type="text" name="season" id="season" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Season...') }}" value="" required> --}}
+                                    <select class="form-control" name="season" id="season">
+                                        @if($place->season)
+                                            <option selected value="{{ $place->season }}">{{ $place->season }}</option>
+                                        @else
+                                            <option selected value="">Season</option>
+                                        @endif
+                                        @foreach (Season::cases() as $season)
+                                            <option class="uppercase" value="{{ $season->value }}">{{ $season->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-control-label" for="cost"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Cost') }}</label>
+                                    <input type="text" name="cost" id="cost" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Cost...') }}" value="" required>
                                 </div>
 
                                 <div class="text-center">
