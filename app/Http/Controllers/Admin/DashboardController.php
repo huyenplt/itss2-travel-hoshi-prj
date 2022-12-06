@@ -71,8 +71,12 @@ class DashboardController extends Controller
                 'cost' => $validated['cost'],
             ]);
 
-            $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
-            $request->file('file_path')->move(public_path('/assets/images/place'), $file_path);
+            if($files = $request->file('file_path')){
+                foreach($files as $file){
+                    $file_path = Carbon::now()->format('Y_m_d') . '_' . $file->store('');
+                    $file->move(public_path('/assets/images/place'), $file_path);
+                }
+            }
 
             $this->placeImagesService->create([
                 'place_id' => $place->id,
