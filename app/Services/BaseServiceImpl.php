@@ -44,9 +44,9 @@ class BaseServiceImpl implements BaseService
      * @param array $data
      * @return bool|mixed
      */
-    public function update(array $data)
+    public function update($model, array $data)
     {
-        return $this->model->update($data);
+        return $model->update($data);
     }
 
     public function delete(int $id): bool

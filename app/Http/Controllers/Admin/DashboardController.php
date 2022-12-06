@@ -97,24 +97,15 @@ class DashboardController extends Controller
         DB::beginTransaction();
         try {
             $validated = $request->validated();
-            $place = $this->placeService->update($place, [
-                'name' => $validated['name'],
-                'address' => $validated['address'],
-                'content' => $validated['content'],
-                'season' => $validated['season'],
-                'cost' => $validated['cost'],
-            ]);
+            $placeUpdate = $this->placeService->update($place, $request->safe()->only(['name', 'address', 'content']));
 
-            $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
-            $request->file('file_path')->move(public_path('/assets/images/place'), $file_path);
-
-            $this->placeImagesService->create([
-                'place_id' => $place->id,
-                'file_path' => $file_path,
-            ]);
-
+            if ($request->file('file_path')) {
+                $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
+                $request->file('file_path')->move(public_path('/assets/images/place'), $file_path);
+                $place->placeImages()->first()->update(['file_path' => $file_path]);
+            }
             DB::commit();
-            return redirect()->route('admin.dashboard')->with('success', ' create new place success');
+            return redirect()->route('admin.dashboard')->with('success', ' update place success');
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e);
