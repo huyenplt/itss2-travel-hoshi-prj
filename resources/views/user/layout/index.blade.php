@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/assets/css/app.css" />
+    <link rel="stylesheet" href="/assets/css/user/app.css" />
 
     @yield('css')
     @yield('title')
@@ -17,7 +17,7 @@
 <body>
     @yield('content')
 
-    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/user/app.js"></script>
     @yield('js')
 </body>
 </html>

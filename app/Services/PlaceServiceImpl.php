@@ -8,18 +8,23 @@ use App\Services\Interfaces\PlaceService;
 
 class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
 {
-    public function create(array $data) : Place
+    public function __construct(Place $place)
     {
-        return Place::create($data);
+        $this->model = $place;
     }
 
-    public function update(Place $place, array $data) : bool
+    public function getAddressPlace() 
     {
-        return $place->update($data);
+        $addresses = $this->model
+            ->select('address')
+            ->groupBy('address');
+
+        return $addresses;
     }
 
-    public function remove(array $ids = []) : bool
-    {
-        return Place::whereIn('id', $ids)->delete();
+    public function getPlaceByAddressName (string $addressName) {
+        $places = $this->model->where('address', 'like', '%' . $addressName . '%')->get();
+
+        return $places;
     }
 }

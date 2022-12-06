@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\AuthController;
-use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +17,24 @@ use App\Http\Controllers\User\HomeController;
 |
 */
 
-// Route::prefix('user')->group(function () {
-//     Route::get('/', [AuthController::class, 'userAuth'])->name('user');
-//     Route::post('login', [AuthController::class, 'userLogin'])->name('user.login');
-//     Route::post('signup', [AuthController::class, 'userSignUp'])->name('user.signup');
-//     Route::get('/home', [HomeController::class, 'index'])->name('user.home');
-// });
+Route::get('', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'postLogin'])->name('post.login');
+
+Route::middleware(['role:admin'])->group(function () {
+    Route::prefix('dashboard')->name('dashboard')->group(function () {
+        Route::get('/', [DashboardController::class, 'index']);
+        Route::get('/manager', [DashboardController::class, 'manager'])->name('.manager');
+        Route::get('/detail/{id}', [DashboardController::class, 'detail'])->name('.detail');
+        Route::get('/place/{id}', [DashboardController::class, 'place'])->name('.place');
+        Route::get('/place/delete/{id}', [DashboardController::class, 'delete'])->name('.place.delete');
+        Route::get('/create', [DashboardController::class, 'create'])->name('.place.create');
+        Route::post('/store', [DashboardController::class, 'store'])->name('.place.store');
+    });
+
+    Route::get('/users', [UserController::class, 'index'])->name('user');
+    Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
 
 
