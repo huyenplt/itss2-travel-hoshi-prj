@@ -13,17 +13,17 @@
                     </div>
                 </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.dashboard.place.update') }}" autocomplete="off"
-                            enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.dashboard.place.update', $place) }}" autocomplete="off"
+                            enctype="multipart/form-data" method="POST">
                             @csrf
-                            @method('POST')
+                            @method('PUT')
 
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">
                                         <i class="w3-xxlarge fa fa-photo mr-1"></i>{{ __('Location Photo') }}
                                     </label>
-                                    <input type="file" class="form-control" name="image" required/>
+                                    <input type="file" class="form-control" name="file_path" />
                                 </div>
 
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">

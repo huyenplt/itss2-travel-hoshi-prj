@@ -8,6 +8,6 @@ interface BaseService
     public function create(array $data);
     public function find($id);
     public function all();
-    public function update(array $data);
+    public function update( $model, array $data);
     public function delete(int $id): bool;
 }
