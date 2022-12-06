@@ -102,7 +102,7 @@ class DashboardController extends Controller
         DB::beginTransaction();
         try {
             $validated = $request->validated();
-            $placeUpdate = $this->placeService->update($place, $request->safe()->only(['name', 'address', 'content']));
+            $placeUpdate = $this->placeService->update($place, $request->safe()->only(['name', 'address', 'content', 'season', 'cost']));
 
             if ($request->file('file_path')) {
                 $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
