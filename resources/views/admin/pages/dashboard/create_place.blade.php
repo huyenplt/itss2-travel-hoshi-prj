@@ -1,4 +1,4 @@
-@extends('admin.layout.app', ['activePage' => 'dashboard', 'title' => 'Dashboard', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
+@extends('admin.layout.app', ['activePage' => 'dashboard', 'title' => 'Location', 'navName' => 'Location', 'activeButton' => 'laravel'])
 
 @section('content')
 @php
@@ -8,12 +8,11 @@
         <div class="container-fluid">
             @include('admin.pages.components.helper.alert')
             <div class="row">
-                <div class="card col-md-12">
-                    <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-md-8">
-                                <h3 class="mb-0">{{__('Add Location')}}</h3>
-                            </div>
+            <div class="card col-md-12">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3 class="mb-0">{{__('Add Location')}}</h3>
                         </div>
                     </div>
                     <div class="card-body">

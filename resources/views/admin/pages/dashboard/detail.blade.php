@@ -23,10 +23,14 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-center">
-                    <button type="" class="btn btn-default">
+                    <button type="" class="btn">
                         <a href="{{route('admin.dashboard.place.delete', $place->id)}}">{{ __('Delete') }}</a>
                     </button>
-                    <button type="" class="btn btn-default">{{ __('Save') }}</button>
+                    <button type="" class="btn btn-default">
+                        <a href="{{route('admin.dashboard.place.edit', $place->id)}}">
+                            {{ __('Edit') }}
+                        </a>
+                    </button>
                 </div>
             </div>
         </div>

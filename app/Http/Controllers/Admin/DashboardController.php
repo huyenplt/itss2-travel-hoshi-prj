@@ -90,7 +90,7 @@ class DashboardController extends Controller
     }
 
     public function edit(Place $place) {
-        return view('admin.pages.dashboard.edit', compact('place'));
+        return view('admin.pages.dashboard.edit_place', compact('place'));
     }
 
     public function update(PlaceRequest $request,Place $place ) {

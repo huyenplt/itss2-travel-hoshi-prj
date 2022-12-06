@@ -4,7 +4,7 @@
     <div class="content">
         <div class="row">
             <div class="card col-md-6 place-info">
-              
+
             </div>
             <div class="col-md-6">
                 <div class="form-group pt-5">
@@ -12,7 +12,7 @@
                         <div class="col-6 search">
                             <input type="text" id="search" class="form-control" placeholder="{{ __('Search location') }}">
                             <i class="bi bi-search icon-search"></i>
-                        </div>
+                    </div>
                         <div class="col-2">
                             <button type="submit" class="btn btn-default"><a href="{{route('admin.dashboard.place.create', ['address' => urlencode($address)])}}">{{ __('Add Location') }}</a></button>
                         </div>
