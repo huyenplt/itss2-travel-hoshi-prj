@@ -28,6 +28,8 @@ class PlaceRequest extends FormRequest
             'name'    => 'required|max:255',
             'address' => 'required|max:255',
             'content' => 'required',
+            'season'    => 'integer',
+            'cost'    => 'integer',
             'file_path' => 'required',
         ];
     }
