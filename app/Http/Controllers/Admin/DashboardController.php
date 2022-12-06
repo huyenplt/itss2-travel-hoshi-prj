@@ -52,7 +52,7 @@ class DashboardController extends Controller
     public function create()
     {
         $place = new Place();
-        return view('admin.pages.dashboard.create_place',compact('place'));
+        return view('admin.pages.dashboard.create_place');
     }
 
     public function store(Request $request)
@@ -64,6 +64,20 @@ class DashboardController extends Controller
             'file_path' => $image,
         ]);
         return redirect()->route('admin.dashboard')->with('success', ' create new place success');
+    }
+
+    public function edit($id = null)
+    {
+        $place = $this->placeService->find($id);
+        return view('admin.pages.dashboard.edit_place', compact('place'));
+    }
+
+    public function update($id = null, Request $request)
+    {
+        if( $placeRequest = $this->placeService->update($request->only(['name', 'address', 'content'])))
+        $image = $request->file('image')->store('public/images/'.$placeRequest->name);
+
+        return back();
     }
 
     public function delete ($id = null)
