@@ -56,7 +56,6 @@
                                         <label class="form-control-label" for="season"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Season') }}</label>
                                         {{-- <input type="text" name="season" id="season" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Season...') }}" value="" required> --}}
                                         <select class="form-control" name="season" id="season">
-                                            <option value="">Season</option>
                                             @foreach (Season::cases() as $season)
                                                 <option class="uppercase" value="{{ $season->value }}">{{ $season->name }}</option>
                                             @endforeach

@@ -48,15 +48,9 @@
 
                                 <div class="form-group">
                                     <label class="form-control-label" for="season"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Season') }}</label>
-                                    {{-- <input type="text" name="season" id="season" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Season...') }}" value="" required> --}}
                                     <select class="form-control" name="season" id="season">
-                                        @if($place->season)
-                                            <option selected value="{{ $place->season }}">{{ $place->season }}</option>
-                                        @else
-                                            <option selected value="">Season</option>
-                                        @endif
                                         @foreach (Season::cases() as $season)
-                                            <option class="uppercase" value="{{ $season->value }}">{{ $season->name }}</option>
+                                            <option class="uppercase" {{$season->value == $place->season->value ? 'selected' : ''}} value="{{ $season->value }}">{{ $season->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
