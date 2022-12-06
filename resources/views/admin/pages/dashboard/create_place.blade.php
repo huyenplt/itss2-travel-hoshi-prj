@@ -32,7 +32,7 @@
                                         </div>
                                         <input type="button" value="{{__('Choose image')}}" id="choose-image" />
                                         <input type="button" value="{{__('Remove image')}}" id="remove-image" class="hide"/>
-                                        <input type="file" accept="image/png, image/jpeg" class="form-control hide" id="image" name="file_path"/>
+                                        <input type="file" multiple accept="image/png, image/jpeg" class="form-control hide" id="image" name="file_path[]"/>
                                     </div>
                                 </div>
 
