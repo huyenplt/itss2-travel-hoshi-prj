@@ -9,6 +9,14 @@ class Blog extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'place_id',
+        'title',
+        'content',
+        'total_votes'
+    ];
+
     protected $guarded = [];
 
     protected $casts = [];

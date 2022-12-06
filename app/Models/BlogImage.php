@@ -9,6 +9,11 @@ class BlogImage extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'blog_id',
+        'file_path'
+    ];
+
     protected $guarded = [];
 
     protected $casts = [];

@@ -2,9 +2,11 @@
 
 namespace App\Services\Interfaces;
 
+use App\Services\Interfaces\BaseService;
+
 use App\Models\User;
 
-interface UserService
+interface UserService extends BaseService
 {
-    public function create(array $data) : User; 
+    public function create(array $data) : User;
 }

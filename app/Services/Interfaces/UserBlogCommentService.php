@@ -2,6 +2,8 @@
 
 namespace App\Services\Interfaces;
 
-interface UserBlogCommentService
+use App\Services\Interfaces\BaseService;
+
+interface UserBlogCommentService extends BaseService
 {
 }
