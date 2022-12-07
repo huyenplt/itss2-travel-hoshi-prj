@@ -28,7 +28,7 @@
                                     <label class="form-control-label" for="input-name">
                                         <i class="w3-xxlarge fa fa-photo mr-1"></i>{{ __('Location Photo') }}
                                     </label>
-                                    <input type="file" class="form-control" name="file_path" />
+                                    <input type="file" multiple accept="image/png, image/jpeg" class="form-control" id="image" name="file_path[]"/>
                                 </div>
 
                                 <div class="form-group">
@@ -57,7 +57,7 @@
 
                                 <div class="form-group">
                                     <label class="form-control-label" for="cost"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Cost') }}</label>
-                                    <input type="text" name="cost" id="cost" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Cost...') }}" value="" required>
+                                    <input type="text" name="cost" id="cost" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Cost...') }}" value="{{$place->cost}}" required>
                                 </div>
 
                                 <div class="text-center">
