@@ -3,25 +3,28 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h5 class="modal-title text-center mb-3" id="exampleModalLabel">Create blog</h5>
-                <p>{{__(Auth::user()->name)}}</p>
                 <form action="{{route('user.blog.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <label>Title</label>
-                    <input type="text" name="title" class="mb-2"/>
-                    <div><label>Content</label></div>
-                    <div class="d-content" class="mb-2">
-                        <div contentEditable="true" id="content" class="mb-2">
-                        </div>
-                        <textarea name="content" class="d-none"></textarea>
-                        <div class="mt-2 d-image"></div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="title">{{ __('Title') }}</label>
+                        <input type="text" name="title" id="title" class="form-control mt-1" value="" required>
                     </div>
+                    <div class="form-group my-2">
+                        <label class="form-control-label mb-1" for="content">{{ __('Content') }}</label>
+                        <div class="d-content px-3 py-2">
+                            <div contentEditable="true" id="content" class="mb-2"></div>
+                            <textarea name="content" class="d-none"></textarea>
+                            <div class="mt-2 d-image"></div>
+                        </div>
+                    </div>
+
                     <div class="d-flex w-100">
                         <input type="file" accept="image/png, image/jpeg" class="form-control d-none" id="image" name="file_path"/>
                         <div class="images me-3"><i class="bi bi-images"></i></div>
                         <div class="camera me-3"><i class="bi bi-camera-video-fill"></i></div>
                         <div class="location me-3"><i class="bi bi-geo-alt-fill"></i></div>
                         <div class="emoji me-3"><i class="bi bi-emoji-laughing"></i></div>
-                        <div class="w-100 text-end"><button >Create</button></div>
+                        <div class="w-100 text-end"><button type="submit" class="btn">Create</button></div>
                     </div>
                 </form>
             </div>

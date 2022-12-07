@@ -23,6 +23,7 @@ emoji-picker {
 	width: 100%;
 	min-height: 200px;
 	border: 1px solid #ccc;
+    border-radius: 0.25rem;
 }
 
 #content {
@@ -30,6 +31,11 @@ emoji-picker {
 	min-height: 20px;
 	outline: none;
 	border: none;
+}
+
+input.form-control#title:focus {
+    border: 1px solid #ccc;
+    box-shadow: none;
 }
 
 #show-img {
