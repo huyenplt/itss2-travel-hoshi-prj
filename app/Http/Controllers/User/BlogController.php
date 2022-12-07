@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Blog\BlogRequest;
 use App\Services\Interfaces\BlogImageService;
 use App\Services\Interfaces\BlogService;
+use App\Services\Interfaces\PlaceService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,11 +17,13 @@ class BlogController extends Controller
 {
     protected $blogService;
     protected $blogImageService;
+    protected $placeService;
 
-    public function __construct(BlogService $blogService, BlogImageService $blogImageService)
+    public function __construct(BlogService $blogService, BlogImageService $blogImageService, PlaceService $placeService)
     {
         $this->blogService = $blogService;
         $this->blogImageService = $blogImageService;
+        $this->placeService = $placeService;
     }
 
     public function index()
@@ -35,6 +38,13 @@ class BlogController extends Controller
         $place = $blog->place->name;
         $user = $blog->user->name;
         return view('user.pages.blog.detail', compact('blog','place','user'));
+    }
+
+    public function showByPlace($id)
+    {
+        $place = $this->placeService->find($id);
+        $blogs = $place->blogs;
+        return view('user.pages.blog.list', compact('place','blogs'));
     }
 
     public function store(BlogRequest $request)

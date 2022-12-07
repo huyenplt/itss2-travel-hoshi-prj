@@ -28,6 +28,7 @@ Route::middleware(['role:user'])->group(function () {
         Route::post('create', [BlogController::class, 'store'])->name('store');
         // Route::get('', [BlogController::class, 'index'])->name('index');
         Route::get('{id}/detail', [BlogController::class, 'show'])->name('detail');
+        Route::get('place/{id}', [BlogController::class, 'showByPlace'])->name('showByPlace');
     });
 });
 
