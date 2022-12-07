@@ -26,12 +26,12 @@ Route::middleware(['role:admin'])->group(function () {
         Route::get('/manager', [DashboardController::class, 'manager'])->name('.manager');
         Route::get('/detail/{id}', [DashboardController::class, 'detail'])->name('.detail');
         Route::get('/edit/{place}', [DashboardController::class, 'edit'])->name('.place.edit');
+        Route::put('/{place}/update', [DashboardController::class, 'update'])->name('.place.update');
         Route::get('/form', [DashboardController::class, 'create'])->name('.place.form');
         Route::get('/place/{id}', [DashboardController::class, 'place'])->name('.place');
         Route::get('/place/delete/{id}', [DashboardController::class, 'delete'])->name('.place.delete');
         Route::get('/create', [DashboardController::class, 'create'])->name('.place.create');
         Route::post('/store', [DashboardController::class, 'store'])->name('.place.store');
-        Route::put('/{place}/update', [DashboardController::class, 'update'])->name('.place.update');
     });
 
     Route::get('/users', [UserController::class, 'index'])->name('user');
