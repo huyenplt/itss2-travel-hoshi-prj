@@ -21,6 +21,13 @@ Route::post('signup', [AuthController::class, 'signUp'])->name('signup');
 
 Route::middleware(['role:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::post('/blog/create', [BlogController::class, 'store'])->name('blog.store');
+    Route::group([
+        'prefix' => 'blog',
+        'as' => 'blog.'
+    ], function () {
+        Route::post('create', [BlogController::class, 'store'])->name('store');
+        // Route::get('', [BlogController::class, 'index'])->name('index');
+        Route::get('{id}/detail', [BlogController::class, 'show'])->name('detail');
+    });
 });
 

@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Models\Blog;
 
 class BlogController extends Controller
 {
@@ -20,6 +21,18 @@ class BlogController extends Controller
     {
         $this->blogService = $blogService;
         $this->blogImageService = $blogImageService;
+    }
+
+    public function index()
+    {
+        $data = $this->blogService->all();
+        return view('user.pages.blog.index', compact('data'));
+    }
+
+    public function show($id)
+    {
+        $blog = $this->blogImageService->find($id);
+        return view('user.pages.blog.detail', compact('blog'));
     }
 
     public function store(BlogRequest $request)
@@ -38,12 +51,12 @@ class BlogController extends Controller
             if ($validated['file_path']) {
                 $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
                 $request->file('file_path')->move(public_path('/assets/images/blog'), $file_path);
-        
+
                 $this->blogImageService->create([
                     'blog_id' => $blog->id,
                     'file_path' => $file_path,
                 ]);
-            } 
+            }
 
             DB::commit();
             return redirect()->route('user.home')->with('success', ' Create new blog success');
