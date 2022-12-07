@@ -14,12 +14,10 @@ use App\Models\Place;
 class DashboardController extends Controller
 {
     protected $placeService;
-    protected $placeImagesService;
 
-    public function __construct(PlaceService $placeService, PlaceImageService $placeImagesService)
+    public function __construct(PlaceService $placeService)
     {
         $this->placeService = $placeService;
-        $this->placeImagesService = $placeImagesService;
     }
 
     public function index ()
@@ -74,15 +72,12 @@ class DashboardController extends Controller
             if($files = $request->file('file_path')){
                 foreach($files as $file){
                     $file_path = Carbon::now()->format('Y_m_d') . '_' . $file->store('');
-                    $file->move(public_path('/assets/images/place'), $file_path);
+                    $file->move(public_path("/assets/images/place/{$validated['name']}"), $file_path);
+                    $place->placeImages()->create([
+                        'file_path' => $file_path,
+                    ]);
                 }
             }
-
-            $this->placeImagesService->create([
-                'place_id' => $place->id,
-                'file_path' => $file_path,
-            ]);
-
             DB::commit();
             return redirect()->route('admin.dashboard')->with('success', ' create new place success');
         } catch (\Exception $e) {
@@ -104,10 +99,15 @@ class DashboardController extends Controller
             $validated = $request->validated();
             $placeUpdate = $this->placeService->update($place, $request->safe()->only(['name', 'address', 'content', 'season', 'cost']));
 
-            if ($request->file('file_path')) {
-                $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
-                $request->file('file_path')->move(public_path('/assets/images/place'), $file_path);
-                $place->placeImages()->first()->update(['file_path' => $file_path]);
+            if ($files = $request->file('file_path')) {
+                $place->placeImages()->delete();
+                foreach($files as $file){
+                    $file_path = Carbon::now()->format('Y_m_d') . '_' . $file->store('');
+                    $file->move(public_path("/assets/images/place/{$validated['name']}"), $file_path);
+                    $place->placeImages()->create([
+                        'file_path' => $file_path,
+                    ]);
+                }
             }
             DB::commit();
             return redirect()->route('admin.dashboard')->with('success', ' update place success');
