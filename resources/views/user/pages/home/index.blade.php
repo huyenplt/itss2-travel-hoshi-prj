@@ -7,10 +7,11 @@
 
 @section('content')
     @include('user.pages.components.helper.alert')
+    {{dd($data)}}
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#blog-modal">
         Create blog
     </button>
-    
+
     @include('user.pages.components.home.blog')
 @endsection
 
