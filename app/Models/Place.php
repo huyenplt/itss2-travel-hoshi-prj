@@ -32,4 +32,9 @@ class Place extends Model
     {
         return $this->hasMany(UserPlaceFavourite::class);
     }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
 }
