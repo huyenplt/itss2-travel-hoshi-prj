@@ -18,13 +18,13 @@
                         </div>
                     </div>
 
-                    <div class="d-flex w-100">
+                    <div class="d-flex w-100 icon-list">
                         <input type="file" accept="image/png, image/jpeg" class="form-control d-none" id="image" name="file_path"/>
                         <div class="images me-3"><i class="bi bi-images"></i></div>
                         <div class="camera me-3"><i class="bi bi-camera-video-fill"></i></div>
                         <div class="location me-3"><i class="bi bi-geo-alt-fill"></i></div>
                         <div class="emoji me-3"><i class="bi bi-emoji-laughing"></i></div>
-                        <div class="w-100 text-end"><button type="submit" class="btn">Create</button></div>
+                        <div class="w-100 text-end"><button type="submit" class="btn btn-primary">Create</button></div>
                     </div>
                 </form>
             </div>
