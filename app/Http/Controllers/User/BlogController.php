@@ -31,8 +31,10 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $blog = $this->blogImageService->find($id);
-        return view('user.pages.blog.detail', compact('blog'));
+        $blog = $this->blogService->find($id);
+        $place = $blog->place->name;
+        $user = $blog->user->name;
+        return view('user.pages.blog.detail', compact('blog','place','user'));
     }
 
     public function store(BlogRequest $request)
