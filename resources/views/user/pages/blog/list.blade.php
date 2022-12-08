@@ -1,1 +1,2 @@
-{{dd($blogs[0]->user)}}
+
+{{dd($blogs)}}
