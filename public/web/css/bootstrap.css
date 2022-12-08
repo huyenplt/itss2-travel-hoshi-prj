@@ -5130,6 +5130,10 @@ a.badge-dark:focus, a.badge-dark.focus {
   color: inherit;
 }
 
+.alert-dismissible .close span {
+    font-size: 26px;
+}
+
 .alert-primary {
   color: #004085;
   background-color: #cce5ff;
