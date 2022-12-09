@@ -15,6 +15,8 @@ class Blog extends Model
         'place_id',
         'title',
         'content',
+        'season',
+        'price',
         'total_votes'
     ];
 
