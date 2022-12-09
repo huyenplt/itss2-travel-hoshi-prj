@@ -65,8 +65,6 @@ class DashboardController extends Controller
                 'name' => $validated['name'],
                 'address' => $validated['address'],
                 'content' => $validated['content'],
-                'season' => $validated['season'],
-                'cost' => $validated['cost'],
             ]);
 
             if($files = $request->file('file_path')){

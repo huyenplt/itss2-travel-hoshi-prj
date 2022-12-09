@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->text('content')->nullable();
-            $table->tinyInteger('season')->nullable();
-            $table->integer('cost')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

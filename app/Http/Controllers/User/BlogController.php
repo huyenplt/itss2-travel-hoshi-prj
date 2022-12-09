@@ -49,6 +49,7 @@ class BlogController extends Controller
 
     public function store(BlogRequest $request)
     {
+        // dd($request->validated());
         DB::beginTransaction();
         try {
             $validated = $request->validated();
@@ -78,5 +79,14 @@ class BlogController extends Controller
         }
 
         return back()->with('error', ' create new place failed!');
+    }
+
+    public function delete($id)
+    {
+        if ($this->blogService->delete($id)) {
+            return redirect()->route('user.blog.index')->with('success', 'Delete success');
+        }
+
+        return back()->with('error', 'Delete failed!');
     }
 }
