@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-
+use App\Services\Interfaces\BlogService;
 class BlogController extends Controller
 {
     protected $blogService;

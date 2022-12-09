@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Services\Interfaces\UserService;
 
 class UserController extends Controller
 {

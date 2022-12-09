@@ -58,6 +58,8 @@ class BlogController extends Controller
                 'place_id' => 1,
                 'title' => $validated['title'],
                 'content' => $validated['content'],
+                'season' => $validated['season'],
+                'price' => $validated['price'],
                 'total_votes' => 0
             ]);
 
@@ -88,5 +90,11 @@ class BlogController extends Controller
         }
 
         return back()->with('error', 'Delete failed!');
+    }
+
+    public function showMyBlogs() {
+        $user = Auth::user();
+        $blogs = $user->blogs;
+        return view('user.pages.blog.my', compact('blogs'));
     }
 }
