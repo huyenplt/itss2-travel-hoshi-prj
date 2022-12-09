@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('content');
             $table->string('total_votes');
+            $table->tinyInteger('season')->nullable();
             $table->integer('price')->nullable();
             $table->softDeletes();
             $table->timestamps();

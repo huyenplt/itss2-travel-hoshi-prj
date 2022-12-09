@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\BlogController;
+use App\Http\Controllers\User\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,15 @@ Route::middleware(['role:user'])->group(function () {
         'as' => 'blog.'
     ], function () {
         Route::post('create', [BlogController::class, 'store'])->name('store');
-        // Route::get('', [BlogController::class, 'index'])->name('index');
+        Route::get('', [BlogController::class, 'index'])->name('index');
         Route::get('{id}/detail', [BlogController::class, 'show'])->name('detail');
         Route::get('place/{id}', [BlogController::class, 'showByPlace'])->name('showByPlace');
+    });
+    Route::group([
+        'prefix' => 'comment',
+        'as' => 'comment.'
+    ], function () {
+        Route::post('create/{id}', [CommentController::class, 'store'])->name('store');
     });
 });
 
