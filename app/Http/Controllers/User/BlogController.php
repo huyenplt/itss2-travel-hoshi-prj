@@ -83,9 +83,9 @@ class BlogController extends Controller
         return back()->with('error', ' create new place failed!');
     }
 
-    public function delete($id)
+    public function delete(Blog $blog)
     {
-        if ($this->blogService->delete($id)) {
+        if (Auth::user()->can('delete', $blog) && $this->blogService->delete($blog->id)) {
             return redirect()->route('user.blog.index')->with('success', 'Delete success');
         }
 
