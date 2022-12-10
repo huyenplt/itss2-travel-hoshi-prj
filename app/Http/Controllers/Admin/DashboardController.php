@@ -47,8 +47,9 @@ class DashboardController extends Controller
     public function place ($id = null)
     {
         $place = $this->placeService->find($id);
+        $placeImages = $place->placeImages;
 
-        return view('admin.pages.dashboard.place', compact('place'));
+        return view('admin.pages.components.dashboard.place', compact('place', 'placeImages'));
     }
 
     public function create(Request $request)
