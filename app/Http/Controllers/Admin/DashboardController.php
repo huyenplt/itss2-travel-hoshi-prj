@@ -72,7 +72,7 @@ class DashboardController extends Controller
             if($files = $request->file('file_path')){
                 foreach($files as $file){
                     $file_path = Carbon::now()->format('Y_m_d') . '_' . $file->store('');
-                    $url = "assets/images/place/" . Str::slug($validated['name']);
+                    $url = "assets/images/place/" . Str::slug($validated['address']) . '/' . Str::slug($validated['name']);
                     $file->move(public_path($url), $file_path);
                     $place->placeImages()->create([
                         'file_path' => $url . '/' . $file_path,
@@ -121,7 +121,7 @@ class DashboardController extends Controller
     {
         DB::beginTransaction();
         try {
-            $url = "assets/images/place/" . Str::slug($this->placeService->find($id)->name);
+            $url = "assets/images/place/" . Str::slug($this->placeService->find($id)->address) . '/' . Str::slug($this->placeService->find($id)->name);
             $file_path = public_path($url);
             File::deleteDirectory($file_path);
             $this->placeService->delete($id);
