@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Interfaces\PlaceService;
 
-
 class HomeController extends Controller
 {
     protected $placeService;
