@@ -104,7 +104,7 @@ p.detail {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .search {
