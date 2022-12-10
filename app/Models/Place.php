@@ -32,4 +32,12 @@ class Place extends Model
     {
         return $this->hasMany(Blog::class);
     }
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($place) { // before delete() method call this
+            $place->placeImages()->delete();
+        });
+    }
 }

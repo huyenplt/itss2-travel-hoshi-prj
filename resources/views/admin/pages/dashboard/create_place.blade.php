@@ -30,6 +30,14 @@
                                         <div class="block-img">
                                             <img id="show-img" src="" />
                                         </div>
+                                        <div class="text-center justify-content-center d-flex hide" id="load-images">
+                                            <div type="" class="btn-custom prev-btn mr-3">
+                                                <i class="nc-icon nc-button-play"></i>
+                                            </div>
+                                            <div type="" class="btn-custom next-btn">
+                                                <i class="nc-icon nc-button-play"></i>
+                                            </div>
+                                        </div>
                                         <input type="button" value="{{__('Choose image')}}" id="choose-image" />
                                         <input type="button" value="{{__('Remove image')}}" id="remove-image" class="hide"/>
                                         <input type="file" multiple accept="image/png, image/jpeg" class="form-control hide" id="image" name="file_path[]"/>
