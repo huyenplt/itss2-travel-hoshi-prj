@@ -6,7 +6,7 @@ use App\Services\Interfaces\BaseService;
 
 interface PlaceService extends BaseService
 {
-    public function getAddressPlace();
+    public function getAddressPlace($query = null);
     public function getPlaceByAddressName (string $addressName);
     public function all();
 }

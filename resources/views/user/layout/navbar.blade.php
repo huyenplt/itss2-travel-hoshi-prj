@@ -38,7 +38,7 @@
 
             <!-- Dropdown Menu -->
             <li class="nav-item dropdown ml-5">
-                <a class="nav-link dropdown-toggle page-scroll" href="#about" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()? Auth::user()->name : 'Login' }}</a>
+                <a class="nav-link dropdown-toggle page-scroll" href="#about" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user() ? Auth::user()->name : 'Login' }}</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">My Account</span></a>
                     <div class="dropdown-items-divide-hr"></div>

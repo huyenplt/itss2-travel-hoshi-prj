@@ -24,6 +24,7 @@ class CreateCommentRequest extends FormRequest
     public function rules()
     {
         return [
+            'blog_id' => 'required|integer',
             'comment' => 'required|max:255'
         ];
     }
