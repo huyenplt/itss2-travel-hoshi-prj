@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Enums\Season;
 class Place extends Model
 {
     use HasFactory;
@@ -19,10 +18,6 @@ class Place extends Model
 
     protected $guarded = [];
 
-    protected $casts = [
-        'season' => Season::class,
-    ];
-
     public function placeImages()
     {
         return $this->hasMany(PlaceImage::class);
@@ -36,5 +31,13 @@ class Place extends Model
     public function blogs()
     {
         return $this->hasMany(Blog::class);
+    }
+
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($place) { // before delete() method call this
+            $place->placeImages()->delete();
+        });
     }
 }

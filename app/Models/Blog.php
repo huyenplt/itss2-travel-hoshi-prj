@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\Season;
 
 class Blog extends Model
 {
@@ -14,12 +15,16 @@ class Blog extends Model
         'place_id',
         'title',
         'content',
+        'season',
+        'price',
         'total_votes'
     ];
 
     protected $guarded = [];
 
-    protected $casts = [];
+    protected $casts = [
+        'season' => Season::class,
+    ];
 
     public function blogImages()
     {

@@ -5,11 +5,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Place\PlaceRequest;
 use App\Services\Interfaces\PlaceService;
 use Illuminate\Http\Request;
-use App\Services\Interfaces\PlaceImageService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Place;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class DashboardController extends Controller
 {
@@ -38,15 +39,17 @@ class DashboardController extends Controller
     public function detail ($id = null)
     {
         $place = $this->placeService->find($id);
+        $placeImages = $place->placeImages;
 
-        return view('admin.pages.dashboard.detail', compact('place'));
+        return view('admin.pages.dashboard.detail', compact('place', 'placeImages'));
     }
 
     public function place ($id = null)
     {
         $place = $this->placeService->find($id);
+        $placeImages = $place->placeImages;
 
-        return view('admin.pages.dashboard.place', compact('place'));
+        return view('admin.pages.components.dashboard.place', compact('place', 'placeImages'));
     }
 
     public function create(Request $request)
@@ -65,16 +68,15 @@ class DashboardController extends Controller
                 'name' => $validated['name'],
                 'address' => $validated['address'],
                 'content' => $validated['content'],
-                'season' => $validated['season'],
-                'cost' => $validated['cost'],
             ]);
 
             if($files = $request->file('file_path')){
                 foreach($files as $file){
                     $file_path = Carbon::now()->format('Y_m_d') . '_' . $file->store('');
-                    $file->move(public_path("/assets/images/place/{$validated['name']}"), $file_path);
+                    $url = "assets/images/place/" . Str::slug($validated['address']) . '/' . Str::slug($validated['name']);
+                    $file->move(public_path($url), $file_path);
                     $place->placeImages()->create([
-                        'file_path' => $file_path,
+                        'file_path' => $url . '/' . $file_path,
                     ]);
                 }
             }
@@ -89,7 +91,6 @@ class DashboardController extends Controller
     }
 
     public function edit(Place $place) {
-        // dd($place);
         return view('admin.pages.dashboard.edit_place', compact('place'));
     }
 
@@ -119,8 +120,18 @@ class DashboardController extends Controller
 
     public function delete ($id = null)
     {
-        if ($this->placeService->delete($id)) {
+        DB::beginTransaction();
+        try {
+            $url = "assets/images/place/" . Str::slug($this->placeService->find($id)->address) . '/' . Str::slug($this->placeService->find($id)->name);
+            $file_path = public_path($url);
+            File::deleteDirectory($file_path);
+            $this->placeService->delete($id);
+
+            DB::commit();
             return redirect()->route('admin.dashboard')->with('success', 'Delete success');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e);
         }
 
         return back()->with('error', 'Delete failed!');

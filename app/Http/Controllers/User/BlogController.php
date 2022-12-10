@@ -36,8 +36,8 @@ class BlogController extends Controller
     {
         $blog = $this->blogService->find($id);
         $place = $blog->place->name;
-        $user = $blog->user->name;
-        return view('user.pages.blog.detail', compact('blog','place','user'));
+        $comments = $blog->userBlogComments;
+        return view('user.pages.blog.detail', compact('blog', 'place', 'comments'));
     }
 
     public function showByPlace($id)
@@ -57,6 +57,8 @@ class BlogController extends Controller
                 'place_id' => 1,
                 'title' => $validated['title'],
                 'content' => $validated['content'],
+                'season' => $validated['season'],
+                'price' => $validated['price'],
                 'total_votes' => 0
             ]);
 
@@ -78,5 +80,20 @@ class BlogController extends Controller
         }
 
         return back()->with('error', ' create new place failed!');
+    }
+
+    public function delete(Blog $blog)
+    {
+        if ($this->blogService->delete($blog->id)) {
+            return redirect()->route('user.blog.index')->with('success', 'Delete success');
+        }
+
+        return back()->with('error', 'Delete failed!');
+    }
+
+    public function showMyBlogs() {
+        $user = Auth::user();
+        $blogs = $user->blogs;
+        return view('user.pages.blog.my', compact('blogs'));
     }
 }

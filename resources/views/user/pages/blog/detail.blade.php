@@ -30,7 +30,7 @@
     </div> <!-- end of container -->
 </div> <!-- end of ex-basic-1 -->
 <!-- end of breadcrumbs -->
-
+@include('user.pages.components.helper.alert')
 <!-- Privacy Content -->
 <div class="ex-basic-2">
     <div class="container">
@@ -49,18 +49,12 @@
                 </div> <!-- end of text-container-->
                 <div class="text-container comments">
                     <h5>Comments: </h5>
+                    @foreach ($comments as $comment)
                     <div class="comment d-flex">
-                        <h6 class="comment__user">Viet Nguyen: </h6>
-                        <p class="comment__content ml-3">Ok good job!</p>
+                        <h6 class="comment__user">{{$comment->user->name}}: </h6>
+                        <p class="comment__content ml-3">{{$comment->comment}}</p>
                     </div>
-                    <div class="comment d-flex">
-                        <h6 class="comment__user">Viet Nguyen: </h6>
-                        <p class="comment__content ml-3">Ok good job!</p>
-                    </div>
-                    <div class="comment d-flex">
-                        <h6 class="comment__user">Viet Nguyen: </h6>
-                        <p class="comment__content ml-3">Ok good job!</p>
-                    </div>
+                    @endforeach
                 </div> <!-- end of text-container-->
                 <div class="text-container">
                     <h5>Post a comment: </h5>
@@ -120,6 +114,13 @@
                     </div>
                 </div>
                 <!-- <a class="btn-outline-reg back" href="{{ route('user.home') }}">BACK</a> -->
+                <form action="{{route('user.comment.store')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="blog_id" value="{{$blog->id}}">
+                    <input type="text" name="comment">
+                    <button type="submit">Comment</button>
+                </form>
+                <a class="btn-outline-reg back" href="{{ route('user.home') }}">BACK</a>
             </div> <!-- end of col-->
         </div> <!-- end of row -->
     </div> <!-- end of container -->

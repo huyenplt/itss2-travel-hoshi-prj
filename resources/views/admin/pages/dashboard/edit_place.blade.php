@@ -50,7 +50,7 @@
                                     <label class="form-control-label" for="season"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Season') }}</label>
                                     <select class="form-control" name="season" id="season">
                                         @foreach (Season::cases() as $season)
-                                            <option class="uppercase" {{$season->value == $place->season->value ? 'selected' : ''}} value="{{ $season->value }}">{{ $season->name }}</option>
+                                            <option class="uppercase" {{$season->value == $place->season ? 'selected' : ''}} value="{{ $season->value }}">{{ $season->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

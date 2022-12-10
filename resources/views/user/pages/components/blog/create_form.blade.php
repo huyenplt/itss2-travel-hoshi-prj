@@ -1,4 +1,7 @@
 <!-- Lightbox -->
+@php
+    use App\Enums\Season;
+@endphp
 <div id="project-7" class="lightbox-basic zoom-anim-dialog mfp-hide">
     <div class="row">
         <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
@@ -27,6 +30,18 @@
                     <div class="location me-3"><i class="fas fa-map-marker-alt"></i></i></div>
                     <div class="emoji me-3"><i class="fas fa-smile"></i></i></i></i></div>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="season"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Season') }}</label>
+                    <select class="form-control" name="season" id="season">
+                        @foreach (Season::cases() as $season)
+                            <option class="uppercase" value="{{ $season->value }}">{{ $season->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="price"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Price') }}</label>
+                    <input type="text" name="price" id="price" class="form-control" placeholder="{{ __('Price...') }}" value="" required>
+                </div>
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn-solid-reg mr-3" href="#your-link">CREATE</button>
                     <a class="btn-outline-reg mfp-close as-button" href="#projects">BACK</a>
@@ -36,6 +51,6 @@
     </div> <!-- end of row -->
 
     <emoji-picker class="d-none"></emoji-picker>
-    
+
 </div> <!-- end of lightbox-basic -->
 <!-- end of lightbox -->

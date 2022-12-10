@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Place;
 use App\Services\BaseServiceImpl;
 use App\Services\Interfaces\PlaceService;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
@@ -15,11 +14,15 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
         $this->model = $place;
     }
 
-    public function getAddressPlace()
+    public function getAddressPlace($query = null)
     {
         $addresses = $this->model
             ->select('address')
             ->groupBy('address');
+
+        if (!is_null($query)) {
+            $addresses = $addresses->where('address', 'like', '%' . $query . '%');
+        }
 
         return $addresses;
     }

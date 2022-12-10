@@ -27,6 +27,8 @@ class BlogRequest extends FormRequest
         return [
             'title'    => 'required|max:255',
             'content' => 'required',
+            'season'    => 'required|integer',
+            'price' => 'required|integer',
             'file_path' => '',
         ];
     }

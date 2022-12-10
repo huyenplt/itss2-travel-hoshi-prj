@@ -1,12 +1,20 @@
 @extends('admin.layout.app', ['activePage' => 'dashboard', 'title' => 'Dashboard', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
-
 @section('content')
     <div class="content">
         @include('admin.pages.components.helper.alert')
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="https://deviet.vn/wp-content/uploads/2019/04/vuong-quoc-anh.jpg" />
+                    @if (count($placeImages))
+                        <img id="place-image" src="{{asset($placeImages[0]->file_path)}}" />
+                    @else
+                        Không có hình ảnh nào
+                    @endif
+                </div>
+                <div class="thumbnails d-none">
+                    @foreach ($placeImages as $placeImage)
+                        <img src="{{asset($placeImage->file_path)}}">
+                    @endforeach
                 </div>
                 <div class="col-md-6 align-items-center">
                     <h5 class="font-weight-bold">{{$place->name}}</h5>

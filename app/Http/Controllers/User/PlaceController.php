@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Interfaces\PlaceService;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PlaceController extends Controller
 {
     protected $placeService;
 
@@ -17,10 +17,9 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $query = $request->query('query') ?? null;
+        $address = urldecode($request->query('address')) ?? null;
+        $places = $this->placeService->getPlaceByAddressName($address);
 
-        $places = $this->placeService->getAddressPlace($query)->get();
-
-        return view('user.pages.home.index', compact('places', 'query'));
+        return view('user.pages.place.index', compact('address', 'places'));
     }
 }

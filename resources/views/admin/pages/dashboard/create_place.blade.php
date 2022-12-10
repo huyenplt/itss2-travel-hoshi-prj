@@ -30,6 +30,14 @@
                                         <div class="block-img">
                                             <img id="show-img" src="" />
                                         </div>
+                                        <div class="text-center justify-content-center d-flex hide" id="load-images">
+                                            <div type="" class="btn-custom prev-btn mr-3">
+                                                <i class="nc-icon nc-button-play"></i>
+                                            </div>
+                                            <div type="" class="btn-custom next-btn">
+                                                <i class="nc-icon nc-button-play"></i>
+                                            </div>
+                                        </div>
                                         <input type="button" value="{{__('Choose image')}}" id="choose-image" />
                                         <input type="button" value="{{__('Remove image')}}" id="remove-image" class="hide"/>
                                         <input type="file" multiple accept="image/png, image/jpeg" class="form-control hide" id="image" name="file_path[]"/>
@@ -52,9 +60,8 @@
                                         <textarea name="content" id="content" class="form-control" style="height: 200px" placeholder="{{ __('Description...') }}" value="" required></textarea>
                                     </div>
 
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label class="form-control-label" for="season"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Season') }}</label>
-                                        {{-- <input type="text" name="season" id="season" class="form-control" placeholder="{{ __('Season...') }}" value="" required> --}}
                                         <select class="form-control" name="season" id="season">
                                             @foreach (Season::cases() as $season)
                                                 <option class="uppercase" value="{{ $season->value }}">{{ $season->name }}</option>
@@ -65,7 +72,7 @@
                                     <div class="form-group">
                                         <label class="form-control-label" for="cost"><i class="w3-xxlarge fa fa-map mr-1"></i>{{ __('Location Cost') }}</label>
                                         <input type="text" name="cost" id="cost" class="form-control" placeholder="{{ __('Cost...') }}" value="" required>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="text-center">
