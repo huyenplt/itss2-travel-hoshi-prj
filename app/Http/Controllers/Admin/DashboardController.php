@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Place\PlaceRequest;
 use App\Services\Interfaces\PlaceService;
 use Illuminate\Http\Request;
-use App\Services\Interfaces\PlaceImageService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -87,7 +86,6 @@ class DashboardController extends Controller
     }
 
     public function edit(Place $place) {
-        // dd($place);
         return view('admin.pages.dashboard.edit_place', compact('place'));
     }
 

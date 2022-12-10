@@ -36,17 +36,17 @@ Route::middleware(['role:admin'])->group(function () {
 
     Route::group([
         'prefix' => 'user',
-        'as' => 'user.'
+        'as' => 'user'
     ], function () {
-        Route::get('/users', [UserController::class, 'index'])->name('index');
-        Route::delete('/remove', [UserController::class, 'delete'])->name('remove');
+        Route::get('/users', [UserController::class, 'index']);
+        Route::delete('/remove', [UserController::class, 'delete'])->name('.remove');
     });
     Route::group([
         'prefix' => 'blog',
-        'as' => 'blog.'
+        'as' => 'blog'
     ], function () {
-        Route::get('/blogs', [BlogController::class, 'index'])->name('index');
-        Route::delete('/remove', [BlogController::class, 'delete'])->name('remove');
+        Route::get('/blogs', [BlogController::class, 'index']);
+        Route::delete('/remove', [BlogController::class, 'delete'])->name('.remove');
     });
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
