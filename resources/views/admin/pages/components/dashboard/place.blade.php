@@ -1,6 +1,10 @@
 <div class="card-body">
-    <h5 class="title">{{ __($place->name) }}</h5>
-    <img src="https://deviet.vn/wp-content/uploads/2019/04/vuong-quoc-anh.jpg" />
+    <h4 class="title">{{ __($place->name) }}</h4>
+    @if (count($placeImages))
+        <img src="{{asset($placeImages[0]->file_path)}}" />
+    @else
+        <div class="text-warning">Không có hình ảnh nào</div>
+    @endif
     <p class="pt-2 detail">{{$place->content}}</p>
     <div class="text-center">
         <a href="{{route('admin.dashboard.detail', $place->id)}}">

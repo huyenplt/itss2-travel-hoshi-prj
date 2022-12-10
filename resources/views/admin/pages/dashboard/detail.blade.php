@@ -5,7 +5,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <img id="place-image" src="{{asset($placeImages[0]->file_path)}}" />
+                    @if (count($placeImages))
+                        <img id="place-image" src="{{asset($placeImages[0]->file_path)}}" />
+                    @else
+                        Không có hình ảnh nào
+                    @endif
                 </div>
                 <div class="thumbnails d-none">
                     @foreach ($placeImages as $placeImage)
