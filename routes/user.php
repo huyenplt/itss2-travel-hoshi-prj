@@ -6,6 +6,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\PlaceController;
+use App\Http\Controllers\User\PlaceFavouriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::middleware(['role:user'])->group(function () {
         Route::get('place/{id}', [BlogController::class, 'showByPlace'])->name('show_by_place');
         Route::get('my', [BlogController::class, 'showMyBlogs'])->name('show_my_blogs');
     });
-    
+
     Route::group([
         'prefix' => 'comment',
         'as' => 'comment.'
@@ -47,6 +48,13 @@ Route::middleware(['role:user'])->group(function () {
         'as' => 'place'
     ], function () {
         Route::get('', [PlaceController::class, 'index'])->name('.index');
+    });
+
+    Route::group([
+        'prefix' => 'favourite',
+        'as' => 'favourite.'
+    ], function () {
+        Route::post('update', [PlaceFavouriteController::class, 'store'])->name('store');
     });
 });
 
