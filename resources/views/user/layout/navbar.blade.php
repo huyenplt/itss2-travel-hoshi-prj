@@ -18,9 +18,6 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav ml-auto align-items-center">
             <li class="nav-item">
-                <a href="#project-7" class="btn-solid-lg page-scroll p-3 mr-2 popup-with-move-anim">+   Create new blog</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -51,5 +48,3 @@
         </ul>
     </div>
 </nav>
-
-@include('user.pages.components.blog.create_form')

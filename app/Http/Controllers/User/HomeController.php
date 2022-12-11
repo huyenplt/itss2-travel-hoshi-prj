@@ -17,16 +17,25 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $query = $request->query('query') ?? null;
+        $address = $request->query('address') ?? null;
+        $season = $request->query('season') ?? 0;
+        $price = $request->query('price') ?? null;
 
-        if ($query) $places = $this->placeService->getPlaceByAddressName($query);
-        // $places = $this->placeService->getAddressPlace($query)->get();
-        else $places = $this->placeService->all()->paginate(10);
+        // if ($query) $places = $this->placeService->getPlaceByAddressName($query);
+        // // $places = $this->placeService->getAddressPlace($query)->get();
+        // else $places = $this->placeService->all()->paginate(10);
 
-        if ($request->ajax()) {
-            return view('user.pages.components.place.list', compact('places', 'query'));
-        }
+        // if ($request->ajax()) {
+        //     return view('user.pages.components.place.list', compact('places', 'query'));
+        // }
+        $data = [
+            'address' => $address,
+            'season' => $season,
+            'price' => $price
+        ];
 
-        return view('user.pages.home.index', compact('places', 'query'));
+        $places = $this->placeService->search($data);
+
+        return view('user.pages.home.index', compact('places', 'address', 'season', 'price'));
     }
 }

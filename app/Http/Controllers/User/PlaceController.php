@@ -17,9 +17,10 @@ class PlaceController extends Controller
 
     public function index(Request $request)
     {
-        $address = urldecode($request->query('address')) ?? null;
-        $places = $this->placeService->getPlaceByAddressName($address);
+        $place_request = urldecode($request->query('place')) ?? null;
+        $place = $this->placeService->getPlaceByname($place_request);
+        $blogs = $place->blogs;
 
-        return view('user.pages.place.index', compact('address', 'places'));
+        return view('user.pages.place.index', compact('place', 'blogs'));
     }
 }

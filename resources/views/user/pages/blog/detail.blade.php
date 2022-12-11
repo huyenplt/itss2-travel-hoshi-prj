@@ -38,9 +38,12 @@
             <div class="col-lg-12">
                 <div class="text-container">
                     <h3>{{ $blog->title }}</h3>
-                    <img src="{{ asset('web/images/project-1.jpg') }}" alt="">
-                    <p>Aria Landing Page uses tracking technology on the landing page, in the Applications, and in the Platforms, including mobile application identifiers and a unique Aria user ID to help us recognize you across different Services, to monitor usage and web traffic routing for the Services, and to customize and improve the Services.</p>
-                    <p> By visiting Aria or using the Services you agree to the use of cookies in your browser and HTML-based emails. Cookies are small text files placed on your device when you visit a website. By using any of the Services, or submitting or collecting any Personal Information via the Services, you consent and use of your <a class="green" href="#your-link">Personal Information</a></p>
+                    @if (count($blog->blogImages))
+                        @foreach ($blog->blogImages as $blogImage)
+                            <img src="{{asset($blogImage->file_path)}}" />
+                        @endforeach
+                    @endif
+                    <p>{{$blog->content}}</p>
                 </div> <!-- end of text-container-->
 
                 <div class="text-container rating d-flex">

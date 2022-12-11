@@ -1,7 +1,7 @@
 @php
     use App\Enums\Season;
 @endphp
-<div id="project-7" class="lightbox-basic zoom-anim-dialog mfp-hide">
+<div id="create-blog" class="lightbox-basic zoom-anim-dialog mfp-hide">
     <div class="row">
         <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
         <div class="col-lg-12">
@@ -9,6 +9,7 @@
             <hr class="line-heading">
             <form action="{{route('user.blog.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="place_id" value="{{$place->id}}"/>
                 <div class="form-group">
                     <label class="form-control-label" for="title">{{ __('Title') }}</label>
                     <input type="text" name="title" id="title" class="form-control mt-1" value="" required>

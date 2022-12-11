@@ -6,6 +6,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\PlaceController;
+use App\Http\Controllers\User\PlaceFavouriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,7 @@ Route::middleware(['role:user'])->group(function () {
         Route::post('create', [BlogController::class, 'store'])->name('store');
         Route::get('{blog}/remove', [BlogController::class, 'delete'])->name('remove');
         Route::get('', [BlogController::class, 'index'])->name('index');
-        Route::get('{id}/detail', [BlogController::class, 'show'])->name('detail');
+        Route::get('detail/{id}', [BlogController::class, 'show'])->name('detail');
         Route::get('place/{id}', [BlogController::class, 'showByPlace'])->name('show_by_place');
         Route::get('my', [BlogController::class, 'showMyBlogs'])->name('show_my_blogs');
     });
@@ -46,6 +47,13 @@ Route::middleware(['role:user'])->group(function () {
         'as' => 'comment.'
     ], function () {
         Route::post('create', [CommentController::class, 'store'])->name('store');
+    });
+
+    Route::group([
+        'prefix' => 'favourite',
+        'as' => 'favourite.'
+    ], function () {
+        Route::post('update', [PlaceFavouriteController::class, 'store'])->name('store');
     });
 });
 
