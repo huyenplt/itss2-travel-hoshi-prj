@@ -24,7 +24,7 @@
                 <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link page-scroll" href="#intro">TOUR</a>
+                <a class="nav-link page-scroll" href="#intro">DESTINATION</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link page-scroll" href="#services">BlOG REVIEW</a>

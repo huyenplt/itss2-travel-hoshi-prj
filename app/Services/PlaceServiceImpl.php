@@ -35,6 +35,6 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
 
     public function all() {
         $query = Place::query();
-        return $query->paginate(10);
+        return $query;
     }
 }

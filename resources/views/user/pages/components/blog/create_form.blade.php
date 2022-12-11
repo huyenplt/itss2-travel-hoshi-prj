@@ -1,4 +1,3 @@
-<!-- Lightbox -->
 @php
     use App\Enums\Season;
 @endphp

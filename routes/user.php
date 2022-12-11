@@ -24,6 +24,12 @@ Route::post('signup', [AuthController::class, 'signUp'])->name('signup');
 Route::middleware(['role:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::group([
+        'prefix' => 'place',
+        'as' => 'place'
+    ], function () {
+        Route::get('', [PlaceController::class, 'index'])->name('.index');
+    });
+    Route::group([
         'prefix' => 'blog',
         'as' => 'blog.'
     ], function () {
@@ -34,19 +40,12 @@ Route::middleware(['role:user'])->group(function () {
         Route::get('place/{id}', [BlogController::class, 'showByPlace'])->name('show_by_place');
         Route::get('my', [BlogController::class, 'showMyBlogs'])->name('show_my_blogs');
     });
-    
+
     Route::group([
         'prefix' => 'comment',
         'as' => 'comment.'
     ], function () {
         Route::post('create', [CommentController::class, 'store'])->name('store');
-    });
-
-    Route::group([
-        'prefix' => 'place',
-        'as' => 'place'
-    ], function () {
-        Route::get('', [PlaceController::class, 'index'])->name('.index');
     });
 });
 
