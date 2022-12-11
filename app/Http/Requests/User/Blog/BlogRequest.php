@@ -25,6 +25,7 @@ class BlogRequest extends FormRequest
     public function rules()
     {
         return [
+            'place_id' => 'required|integer',
             'title'    => 'required|max:255',
             'content' => 'required',
             'season'    => 'required|integer',
