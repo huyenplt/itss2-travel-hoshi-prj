@@ -98,7 +98,7 @@ class DashboardController extends Controller
         DB::beginTransaction();
         try {
             $validated = $request->validated();
-            $placeUpdate = $this->placeService->update($place, $request->safe()->only(['name', 'address', 'content', 'season', 'cost']));
+            $placeUpdate = $this->placeService->update($place, $request->safe()->only(['name', 'address', 'content']));
 
             if ($files = $request->file('file_path')) {
                 $place->placeImages()->delete();

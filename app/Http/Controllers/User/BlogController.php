@@ -79,16 +79,17 @@ class BlogController extends Controller
             Log::error($e);
         }
 
-        return back()->with('error', ' create new place failed!');
+        return back()->with('error', ' create new blog failed!');
     }
 
     public function delete(Blog $blog)
     {
-        if ($this->blogService->delete($blog->id)) {
-            return redirect()->route('user.blog.index')->with('success', 'Delete success');
-        }
-
-        return back()->with('error', 'Delete failed!');
+        if (Auth::user()->can('delete', $blog)) {
+            if ($this->blogService->delete($blog->id)) {
+                return redirect()->route('user.blog.index')->with('success', 'Delete success');
+            }
+            return back()->with('error', 'Delete failed!');
+        } else abort(403);
     }
 
     public function showMyBlogs() {
