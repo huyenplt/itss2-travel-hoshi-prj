@@ -8,5 +8,6 @@ interface PlaceService extends BaseService
 {
     public function getAddressPlace($query = null);
     public function getPlaceByAddressName (string $addressName);
-    public function all();
+    public function search($data = []);
+    public function getPlaceByname ($place);
 }

@@ -61,9 +61,9 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/assets/css/user/user_login.css">
+    <link rel="stylesheet" href="{{asset('assets/css/user/user_login.css')}}">
 @endsection
 
 @section('js')
-    <script src="/assets/js/user/user_login.js"></script>
+    <script src="{{asset('assets/js/user/user_login.js')}}"></script>
 @endsection

@@ -19,7 +19,7 @@
     <link rel="icon" href="images/favicon.png">
 
     <link rel="stylesheet" href="{{ asset('web/css/app.css') }}" />
-    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <link rel="stylesheet" href="{{asset('assets/css/user/app.css')}}" />
 
     @yield('css')
     @yield('title')

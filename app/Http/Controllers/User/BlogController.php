@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Blog;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -54,7 +55,7 @@ class BlogController extends Controller
             $validated = $request->validated();
             $blog = $this->blogService->create([
                 'user_id' => Auth::user()->id,
-                'place_id' => 1,
+                'place_id' => $validated['place_id'],
                 'title' => $validated['title'],
                 'content' => $validated['content'],
                 'season' => $validated['season'],
@@ -62,24 +63,24 @@ class BlogController extends Controller
                 'total_votes' => 0
             ]);
 
-            if ($validated['file_path']) {
-                $file_path = Carbon::now()->format('Y_m_d') . '_' . $request->file('file_path')->store('');
-                $request->file('file_path')->move(public_path('/assets/images/blog'), $file_path);
+            if ($file = $request->file('file_path')) {
+                $file_path = Carbon::now()->format('Y_m_d') . '_' . $file->store('');
+                $url = "assets/images/blog/" . Str::slug($validated['title']);
+                $file->move(public_path($url), $file_path);
 
-                $this->blogImageService->create([
-                    'blog_id' => $blog->id,
-                    'file_path' => $file_path,
+                $blog->blogImages()->create([
+                    'file_path' => $url . '/' . $file_path,
                 ]);
             }
 
             DB::commit();
-            return redirect()->route('user.home')->with('success', ' Create new blog success');
+            return back()->with('success', ' Create new blog success');
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e);
         }
 
-        return back()->with('error', ' create new place failed!');
+        return back()->with('error', ' create blog place failed!');
     }
 
     public function delete(Blog $blog)

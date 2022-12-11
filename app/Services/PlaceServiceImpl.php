@@ -33,8 +33,40 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
         return $places;
     }
 
-    public function all() {
-        $query = Place::query();
-        return $query->paginate(10);
+    public function search($data = []) {
+        $address = $data['address'] ?? null;
+        $season = $data['season'] ?? 0;
+        $price = $data['price'] ?? null;
+        $places = $this->model
+            ->select([
+                'places.*'
+            ])
+            ->with('placeImages')
+            ->where(function ($query) use ($address) {
+                $query->where('places.address', 'like', '%' . $address . '%')
+                    ->orWhere('places.name', 'like', '%' . $address . '%');
+            });
+
+        if ($season != 0 || !is_null($price)) {
+            $places = $places->join('blogs', 'blogs.place_id', '=', 'places.id');
+
+            if ($season != 0) {
+                $places = $places->where('blogs.season', $season);
+            }
+                
+            if (!is_null($price)) {
+                $places = $places->where('blogs.price', $price);
+            }
+        }
+            
+        $places = $places->paginate(10);
+        
+        return $places;
+    }
+
+    public function getPlaceByname ($place) {
+        $places = $this->model->where('name', 'like', '%' . $place . '%')->first();
+
+        return $places;
     }
 }

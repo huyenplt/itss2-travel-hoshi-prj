@@ -17,10 +17,18 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $query = $request->query('query') ?? null;
+        $address = $request->query('address') ?? null;
+        $season = $request->query('season') ?? 0;
+        $price = $request->query('price') ?? null;
 
-        $places = $this->placeService->getAddressPlace($query)->get();
+        $data = [
+            'address' => $address,
+            'season' => $season,
+            'price' => $price
+        ];
 
-        return view('user.pages.home.index', compact('places', 'query'));
+        $places = $this->placeService->search($data);
+
+        return view('user.pages.home.index', compact('places', 'address', 'season', 'price'));
     }
 }
