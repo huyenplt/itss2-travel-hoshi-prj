@@ -35,21 +35,21 @@
     <form class="container user-place-search" action="">
         <div class="form-row mb-2 p-1">
             <div class="form-group col-md-6">
-                <label for="inputCity">Address</label>
-                <input type="text" class="form-control user-place-search-key" id="inputCity" name="query" value="{{$query ?? ''}}" placeholder="Where do you want to go?">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{$address ?? ''}}" placeholder="Where do you want to go?">
             </div>
             <div class="form-group col-md-2">
                 <label for="season">Season</label>
                 <select id="season" name="season" class="form-control">
-                    <option selected>Season...</option>
-                    @foreach (Season::cases() as $season)
-                        <option class="uppercase" value="{{ $season->value }}">{{ $season->name }}</option>
+                    <option value="0">Season...</option>
+                    @foreach (Season::cases() as $season_select)
+                        <option class="uppercase" {{ $season == $season_select->value ? 'selected' : '' }} value="{{ $season_select->value }}">{{ $season_select->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group col-md-3">
                 <label for="price">Price</label>
-                <input type="text" class="form-control" id="price" name="price">
+                <input type="text" class="form-control" id="price" name="price" value="{{$price ?? ''}}">
             </div>
             <div class="form-group col-md-1 d-flex flex-column justify-content-end">
                 <button type="submit" class="btn btn-primary">Search</button>

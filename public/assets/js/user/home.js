@@ -60,14 +60,16 @@ $(document).ready(function(){
     $('.user-place-search').submit(function(event) {
         event.preventDefault();
 
-        const key = $('.user-place-search-key').val();
+        const address = $('.user-place-search #address').val();
+        const season = $('.user-place-search #season').val();
+        const price = $('.user-place-search #price').val();
 
-        if(key.length) {
+        if(address.length || season || price.length) {
             $('.pagination').addClass('d-none')
         }
         else $('.pagination').removeClass('d-none')
 
-        handleSearch(key);
+        handleSearch(address, season, price);
     });
 
 });
@@ -86,15 +88,14 @@ function getData(page){
     });
 }
 
-function handleSearch(key) {
-    $.ajax(
-        {
-            url: '?query=' + key,
-            type: "get",
-            datatype: "html"
-        }).done(function(data){
-            $("#tag_container").empty().html(data);
-        }).fail(function(jqXHR, ajaxOptions, thrownError){
-              alert('No response from server');
-        });
+function handleSearch(address, season, price) {
+    $.ajax({
+        url: '?address=' + address + '&season=' + season +  '&price=' + price,
+        type: "get",
+        datatype: "html"
+    }).done(function(data){
+        $("#tag_container").empty().html(data);
+    }).fail(function(jqXHR, ajaxOptions, thrownError){
+        alert('No response from server');
+    });
 }

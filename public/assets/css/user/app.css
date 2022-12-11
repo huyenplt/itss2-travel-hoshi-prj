@@ -149,6 +149,8 @@ filter:drop-shadow(5px 1px 3px rgba(198, 206, 237, 1));
 
 .place-item-content__title:hover {
     opacity: 0.9;
+}
+
 .place-img {
 	width: 300px;
 	height: 300px;

@@ -37,12 +37,13 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
         $query = Place::query();
         return $query;
     }
-    
+
     public function search($data = []) {
         $address = $data['address'] ?? null;
         $season = $data['season'] ?? 0;
         $price = $data['price'] ?? null;
         $places = $this->model
+            ->distinct()
             ->select([
                 'places.*'
             ])

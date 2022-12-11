@@ -21,13 +21,6 @@ class HomeController extends Controller
         $season = $request->query('season') ?? 0;
         $price = $request->query('price') ?? null;
 
-        // if ($query) $places = $this->placeService->getPlaceByAddressName($query);
-        // // $places = $this->placeService->getAddressPlace($query)->get();
-        // else $places = $this->placeService->all()->paginate(10);
-
-        // if ($request->ajax()) {
-        //     return view('user.pages.components.place.list', compact('places', 'query'));
-        // }
         $data = [
             'address' => $address,
             'season' => $season,
@@ -35,6 +28,10 @@ class HomeController extends Controller
         ];
 
         $places = $this->placeService->search($data);
+
+        if ($request->ajax()) {
+            return view('user.pages.components.place.list', compact('places', 'address', 'season', 'price'));
+        }
 
         return view('user.pages.home.index', compact('places', 'address', 'season', 'price'));
     }
