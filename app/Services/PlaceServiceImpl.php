@@ -38,6 +38,7 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
         $season = $data['season'] ?? 0;
         $price = $data['price'] ?? null;
         $places = $this->model
+            ->distinct()
             ->select([
                 'places.*'
             ])
