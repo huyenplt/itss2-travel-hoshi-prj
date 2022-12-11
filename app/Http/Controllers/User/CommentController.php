@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Comment\CreateCommentRequest;
 use App\Services\Interfaces\UserBlogCommentService;
+use App\Models\UserBlogComment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -27,11 +28,21 @@ class CommentController extends Controller
             'blog_id' => $validated['blog_id'],
             'comment' => $validated['comment'],
         ];
-           
+
         if ($this->userBlogCommentService->create($data)) {
             return back()->with('sucess', 'Create comment success');
         }
 
         return back()->with('errors', 'Create comment failed!');
+    }
+
+    public function delete(UserBlogComment $comment)
+    {
+        if (Auth::user()->can('delete', $comment)) {
+            if ($this->userBlogCommentService->delete($comment->id)) {
+                return back()->with('success', 'Delete success');
+            }
+            return back()->with('error', 'Delete failed!');
+        } else abort(403);
     }
 }
