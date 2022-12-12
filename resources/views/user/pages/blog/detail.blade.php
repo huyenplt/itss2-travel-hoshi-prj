@@ -1,42 +1,35 @@
 @extends('user.layout.page')
 
 @section('title')
+<link rel="stylesheet" href="{{ asset('assets/css/user/place_custom.css') }}" />
+<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <title>Blog</title>
 @endsection
 
 @section('section')
+
 <!-- Header -->
 <header id="header" class="ex-header">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>{{ $blog->title }}</h1>
+                <h1> {{ $blog->place->name }} </h1>
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </header> <!-- end of ex-header -->
 <!-- end of header -->
 
-<!-- Breadcrumbs -->
-<div class="ex-basic-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumbs">
-                    <a href="index.html">{{ $place }}</a><i class="fa fa-angle-double-right"></i><span>Blog</span>
-                </div> <!-- end of breadcrumbs -->
-            </div> <!-- end of col -->
-        </div> <!-- end of row -->
-    </div> <!-- end of container -->
-</div> <!-- end of ex-basic-1 -->
-<!-- end of breadcrumbs -->
-@include('user.pages.components.helper.alert')
 <!-- Privacy Content -->
 <div class="ex-basic-2">
     <div class="container">
+    @include('user.pages.components.helper.alert')
         <div class="row">
             <div class="col-lg-12">
                 <div class="text-container">
+                    <div>
+                        
+                    </div>
                     <h3>{{ $blog->title }}</h3>
                     @if (count($blog->blogImages))
                         @foreach ($blog->blogImages as $blogImage)

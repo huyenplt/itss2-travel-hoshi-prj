@@ -21,8 +21,6 @@
 
 @yield('header')
 
-@include('user.pages.components.helper.alert')
-
 @yield('section')
 
 @endsection

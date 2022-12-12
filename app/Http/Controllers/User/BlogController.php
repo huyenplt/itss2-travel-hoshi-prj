@@ -87,10 +87,11 @@ class BlogController extends Controller
     {
         if (Auth::user()->can('delete', $blog)) {
             if ($this->blogService->delete($blog->id)) {
-                return redirect()->route('user.blog.index')->with('success', 'Delete success');
+                return back()->with('success', 'Delete success');
             }
             return back()->with('error', 'Delete failed!');
         } else abort(403);
+
     }
 
     public function showMyBlogs() {

@@ -1,6 +1,6 @@
 @foreach ($places as $place)
     <div class="place-item">
-        <a href="{{route('user.blog.show_by_place', ['id' => urlencode($place->id)])}}" class="image-container place-item__img">
+        <a href="{{route('user.place.index', ['address' => urlencode($place->address)])}}" class="image-container place-item__img">
             <img class="img-fluid" src="{{ count($place->placeImages) ? asset($place->placeImages[0]->file_path) : '' }} " alt="no file">
         </a>
         <div class="place-item-content">
