@@ -1,10 +1,10 @@
-@extends('user.layout.app')
+@extends('user.layout.page')
 
 @section('title')
-<title>Home</title>
+<title>Blog</title>
 @endsection
 
-@section('content')
+@section('section')
 <!-- Header -->
 <header id="header" class="ex-header">
     <div class="container">

@@ -2,34 +2,18 @@
     use App\Enums\Season;
 @endphp
 
-@extends('user.layout.app')
+@extends('user.layout.page')
 
 @section('title')
-<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
-<title>Home</title>
+<title>Homee</title>
 @endsection
 
-@section('content')
-<!-- Preloader -->
-<div class="spinner-wrapper">
-    <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-    </div>
-</div>
-<!-- end of preloader -->
-
-<!-- Navbar -->
-@include('user.layout.navbar')
-<!-- end of navbar -->
-
-<!-- Header -->
-@include('user.layout.header')
+@section('header')
+    @include('user.layout.header')
+@endsection
 <!-- end of header -->
 
-@include('user.pages.components.helper.alert')
-
+@section('section')
 <!-- Intro -->
 <div id="intro" class="basic-1">
     <form class="container user-place-search" action="">

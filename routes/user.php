@@ -56,4 +56,3 @@ Route::middleware(['role:user'])->group(function () {
         Route::post('update', [PlaceFavouriteController::class, 'store'])->name('store');
     });
 });
-
