@@ -42,7 +42,7 @@ class PlaceFavouriteController extends Controller
                 'place_id' => $place->id
             ]);
         }
-        return redirect()->route('user.home');
+        return redirect()->back();
     }
 
     public function dislike(Place $place)
@@ -55,6 +55,6 @@ class PlaceFavouriteController extends Controller
             ]);
             $placeFavourite->delete();
         }
-        return redirect()->route('user.home');
+        return redirect()->back();
     }
 }
