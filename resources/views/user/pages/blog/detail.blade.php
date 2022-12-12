@@ -46,10 +46,21 @@
                     <p>{{$blog->content}}</p>
                 </div> <!-- end of text-container-->
 
-                <div class="text-container rating d-flex">
-                    <h5>Star:</h5>
-                    <p><i class="far fa-star ml-1"></i><i class="far fa-star"></i><i class="far fa-star"></i></p>
-                </div> <!-- end of text-container-->
+                <div class="blog-rating container-wrapper">
+                    <div class="container d-flex align-items-center justify-content-center">
+                        <div class="row justify-content-center">
+                            <!-- star rating -->
+                            <div class="rating-wrapper">
+                                @for ($i = 5; $i >= 1; $i--)
+                                    <input type="radio" id="{{$i}}-star-rating" {{$userBlogVote && $userBlogVote->vote == $i ? 'checked' : ''}} name="star-rating" value="{{$i}}">
+                                    <label for="{{$i}}-star-rating" class="star-rating">
+                                        <i class="fas fa-star d-inline-block"></i>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="text-container comments">
                     <h5>Comments: </h5>
                     @foreach ($comments as $comment)
@@ -65,7 +76,7 @@
                         @csrf
                         <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
                         <div class="form-group">
-                            <input name="comment" data-validation="required" class="w-100 p-3" style="height: 150px" placeholder="Your comment..." />
+                            <input name="comment" type="text" data-validation="required" class="w-100 p-3" style="height: 150px" placeholder="Your comment..." />
                         </div>
 
                         <div class="d-flex justify-content-end align-items-center">
@@ -74,54 +85,10 @@
                         </div>
                     </form>
                 </div> <!-- end of text-container-->
-
-                <div class="blog-rating container-wrapper">
-                    <div class="container d-flex align-items-center justify-content-center">
-                        <div class="row justify-content-center">
-
-                            <!-- star rating -->
-                            <div class="rating-wrapper">
-
-                                <!-- star 5 -->
-                                <input type="radio" id="5-star-rating" {{$userBlogVote && $userBlogVote->vote == 5 ? 'checked' : ''}} name="star-rating" value="5">
-                                <label for="5-star-rating" class="star-rating">
-                                    <i class="fas fa-star d-inline-block"></i>
-                                </label>
-
-                                <!-- star 4 -->
-                                <input type="radio" id="4-star-rating" {{$userBlogVote && $userBlogVote->vote == 4 ? 'checked' : ''}} name="star-rating" value="4">
-                                <label for="4-star-rating" class="star-rating star">
-                                    <i class="fas fa-star d-inline-block"></i>
-                                </label>
-
-                                <!-- star 3 -->
-                                <input type="radio" id="3-star-rating" {{$userBlogVote && $userBlogVote->vote == 3 ? 'checked' : ''}} name="star-rating" value="3">
-                                <label for="3-star-rating" class="star-rating star">
-                                    <i class="fas fa-star d-inline-block"></i>
-                                </label>
-
-                                <!-- star 2 -->
-                                <input type="radio" id="2-star-rating" {{$userBlogVote && $userBlogVote->vote == 2 ? 'checked' : ''}} name="star-rating" value="2">
-                                <label for="2-star-rating" class="star-rating star">
-                                    <i class="fas fa-star d-inline-block"></i>
-                                </label>
-
-                                <!-- star 1 -->
-                                <input type="radio" id="1-star-rating" {{$userBlogVote && $userBlogVote->vote == 1 ? 'checked' : ''}} name="star-rating" value="1">
-                                <label for="1-star-rating" class="star-rating star">
-                                    <i class="fas fa-star d-inline-block"></i>
-                                </label>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div> <!-- end of col-->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
-</div> <!-- end of ex-basic-2 -->
-<!-- end of privacy content -->
+</div>
 
 @endsection
 
