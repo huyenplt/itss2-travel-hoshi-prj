@@ -4,13 +4,13 @@
             <img class="img-fluid" src="{{ count($place->placeImages) ? asset($place->placeImages[0]->file_path) : '' }} " alt="no file">
         </a>
         <div class="place-item-content">
-            <a href="{{route('user.place.index', ['address' => urlencode($place->address)])}}" class="d-flex">
-                <h5 class="place-item-content__title mr-3">{{ $place->name }}</h5>
+            <div class="d-flex">
+                <a href="{{route('user.place.index', ['address' => urlencode($place->address)])}}"><h5 class="place-item-content__title mr-3">{{ $place->name }}</h5></a>
                 <div class="place-item-content__like">
                     <i class="fas fa-heart"></i>
-                    <span>3</span>
+                    <span>{{ $place->countLikes() }}</span>
                 </div>
-            </a>
+            </div>
             <div class="place-item-content__address mb-2">
                 <i class="fas fa-map-marker-alt"></i>
                 <span>{{ $place->address }}</span>
