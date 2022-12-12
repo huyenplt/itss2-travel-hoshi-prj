@@ -39,11 +39,12 @@ class BlogController extends Controller
 
     public function show($id = null)
     {
+        $rating = 3.4;
         $blog = $this->blogService->find($id);
         $place = $blog->place->name;
         $comments = $blog->userBlogComments;
         $userBlogVote = $this->userBlogVote->getBlogVote($id, Auth::user()->id);
-        return view('user.pages.blog.detail', compact('blog', 'place', 'comments', 'userBlogVote'));
+        return view('user.pages.blog.detail', compact('blog', 'place', 'comments', 'userBlogVote', 'rating'));
     }
 
     public function showByPlace($id)
@@ -92,10 +93,11 @@ class BlogController extends Controller
     {
         if (Auth::user()->can('delete', $blog)) {
             if ($this->blogService->delete($blog->id)) {
-                return redirect()->route('user.blog.index')->with('success', 'Delete success');
+                return back()->with('success', 'Delete success');
             }
             return back()->with('error', 'Delete failed!');
         } else abort(403);
+
     }
 
     public function showMyBlogs() {

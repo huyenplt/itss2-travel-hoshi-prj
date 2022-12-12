@@ -1,0 +1,152 @@
+img {
+    width: 100%;
+}
+
+#header.ex-header {
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+}
+
+.place-slider {
+    padding: 1rem 0 3rem;
+}
+
+.place-slider .p-heading {
+    width: 85%;
+    margin-bottom: 0;
+}
+
+.favorite-action span {
+    font-style: italic;
+    font-size: 14px;
+    color: #14bf98;
+}
+
+.favorite-action__btn {
+    border: none;
+    font-size: 24px;
+}
+
+.favorite-action__btn i:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.favorite-action__btn.liked i {
+    color: #FF045C;
+}
+
+.blog-item__img {
+    width: 100%;
+}
+
+.blog-item__img img{
+    width: 70%;
+}
+
+.blog-item__title {
+    color: #14bf98;
+}
+
+.blog-item__user {
+    font: 500 0.8125rem/1.125rem "Montserrat", sans-serif;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.blog-item__content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.blog-item__readmore {
+    color: #14bf98;
+    font: 500 0.8125rem/1.125rem "Montserrat", sans-serif;
+}
+
+.blog-item a:hover {
+    opacity: 0.8;
+    color: #14bf98;
+    text-decoration: none;
+}
+
+.blog-item {
+    position: relative;
+}
+
+.blog-item__header {
+    background-image: url(https://www.alexinwanderland.com/wp-content/uploads/2014/08/post-divider-tile.png);
+    background-position: top left;
+    background-repeat: repeat-x;
+    padding: 20px 0 0 65px;
+    /* width: 80%; */
+}
+
+.bookmark {
+    position: absolute;
+    padding-top: 8px;
+    top: 0;
+    left: 0;
+    height: 65px;
+    width: 50px;
+    background-color: #14bf98;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bookmark:before,
+.bookmark:after{
+    content: '';
+    display: block;
+    position: absolute;
+}
+.bookmark:before {
+    bottom: -50%;
+    height: 100%;
+    width: 100%;
+    background-image:
+      linear-gradient(
+        -30deg,
+        transparent 50%,
+        #14bf98 50%),
+      linear-gradient(
+        30deg,
+        transparent 50%,
+        #14bf98 50%);
+    z-index: -1;
+}
+.bookmark:after {
+    height: 136.5%;
+    width: 88%;
+    left: 6%;
+    top: 0;
+    border-style: dashed;
+    border-color: #fff;
+    border-width: 0 1px;
+    pointer-events: none;
+  }
+
+.bookmark p {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .place-slider .card {
+        height: 200px;
+    }
+
+    .place-slider .card img {
+        height: 100%;
+    }
+}

@@ -1,66 +1,60 @@
 @extends('user.layout.page')
 
 @section('title')
+<link rel="stylesheet" href="{{ asset('assets/css/user/place_custom.css') }}" />
+<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <title>Blog</title>
 @endsection
 
 @section('section')
+
 <!-- Header -->
 <header id="header" class="ex-header">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>{{ $blog->title }}</h1>
+                <h1> {{ $blog->place->name }} </h1>
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </header> <!-- end of ex-header -->
 <!-- end of header -->
 
-<!-- Breadcrumbs -->
-<div class="ex-basic-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumbs">
-                    <a href="index.html">{{ $place }}</a><i class="fa fa-angle-double-right"></i><span>Blog</span>
-                </div> <!-- end of breadcrumbs -->
-            </div> <!-- end of col -->
-        </div> <!-- end of row -->
-    </div> <!-- end of container -->
-</div> <!-- end of ex-basic-1 -->
-<!-- end of breadcrumbs -->
-@include('user.pages.components.helper.alert')
 <!-- Privacy Content -->
-<div class="ex-basic-2">
+<div class="ex-basic-2 pt-5">
     <div class="container">
+        @include('user.pages.components.helper.alert')
         <div class="row">
             <div class="col-lg-12">
                 <div class="text-container">
+                    @if(Auth::user()->can('delete', $blog))
+                    <div class="d-flex justify-content-end">
+                        <a href="{{route('user.blog.remove' , ['blog' => $blog])}}" class="btn-solid-lg page-scroll p-3 mr-2 popup-with-move-anim">
+                            <i class="fas fa-trash mr-2"></i>
+                            <span>Delete this blog</span>
+                        </a>
+                    </div>
+                    @endif
                     <h3>{{ $blog->title }}</h3>
                     @if (count($blog->blogImages))
-                        @foreach ($blog->blogImages as $blogImage)
-                            <img src="{{asset($blogImage->file_path)}}" />
-                        @endforeach
+                    @foreach ($blog->blogImages as $blogImage)
+                    <img class="pb-4" src="{{asset($blogImage->file_path)}}" />
+                    @endforeach
                     @endif
                     <p>{{$blog->content}}</p>
                 </div> <!-- end of text-container-->
 
-                <div class="blog-rating container-wrapper">
-                    <div class="container d-flex align-items-center justify-content-center">
-                        <div class="row justify-content-center">
-                            <!-- star rating -->
-                            <div class="rating-wrapper">
-                                @for ($i = 5; $i >= 1; $i--)
-                                    <input type="radio" id="{{$i}}-star-rating" {{$userBlogVote && $userBlogVote->vote == $i ? 'checked' : ''}} name="star-rating" value="{{$i}}">
-                                    <label for="{{$i}}-star-rating" class="star-rating">
-                                        <i class="fas fa-star d-inline-block"></i>
-                                    </label>
-                                @endfor
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="text-container rating d-flex align-items-center">
+                    <h5 class="mr-2 mb-0">Rating: </h5>
+                    @for ($i = 0; $i < floor($rating); $i++)
+                        <i class="fas fa-star mr-1 d-inline-block checked"></i>
+                    @endfor
+                    @for ($i = floor($rating); $i < 5; $i++)
+                        <i class="fas fa-star mr-1 d-inline-block"></i>
+                    @endfor
+                    <div class="rating__txt ml-2">{{ $rating }} average based on 254 reviews.</div>
+
+                </div> <!-- end of text-container-->
                 <div class="text-container comments">
                     <h5>Comments: </h5>
                     @foreach ($comments as $comment)
@@ -71,16 +65,58 @@
                     @endforeach
                 </div> <!-- end of text-container-->
                 <div class="text-container">
-                    <h5>Post a comment: </h5>
+                    <h5>What do you think about this blog? </h5>
+                    <div class="blog-rating vote container-wrapper">
+                        <div class="container d-flex align-items-center justify-content-begin my-4">
+                            <div class="row justify-content-center">
+
+                                <!-- star rating -->
+                                <div class="rating-wrapper">
+
+                                    <!-- star 5 -->
+                                    <input type="radio" id="5-star-rating" name="star-rating" value="5">
+                                    <label for="5-star-rating" class="star-rating">
+                                        <i class="fas fa-star d-inline-block"></i>
+                                    </label>
+
+                                    <!-- star 4 -->
+                                    <input type="radio" id="4-star-rating" name="star-rating" value="4">
+                                    <label for="4-star-rating" class="star-rating star">
+                                        <i class="fas fa-star d-inline-block"></i>
+                                    </label>
+
+                                    <!-- star 3 -->
+                                    <input type="radio" id="3-star-rating" name="star-rating" value="3">
+                                    <label for="3-star-rating" class="star-rating star">
+                                        <i class="fas fa-star d-inline-block"></i>
+                                    </label>
+
+                                    <!-- star 2 -->
+                                    <input type="radio" id="2-star-rating" name="star-rating" value="2">
+                                    <label for="2-star-rating" class="star-rating star">
+                                        <i class="fas fa-star d-inline-block"></i>
+                                    </label>
+
+                                    <!-- star 1 -->
+                                    <input type="radio" id="1-star-rating" name="star-rating" value="1">
+                                    <label for="1-star-rating" class="star-rating star">
+                                        <i class="fas fa-star d-inline-block"></i>
+                                    </label>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     <form action="{{route('user.comment.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
+                        <input type="hidden" name="blog_id" value="{{$blog->id}}">
                         <div class="form-group">
-                            <input name="comment" type="text" data-validation="required" class="w-100 p-3" style="height: 150px" placeholder="Your comment..." />
+                            <textarea name="comment" id="comment" class="w-100 p-3" style="height: 150px" placeholder="Your comment..."></textarea>
                         </div>
 
                         <div class="d-flex justify-content-end align-items-center">
-                            <button type="submit" class="btn-solid-reg mr-3" href="#your-link">POST</button>
+                            <button type="submit" class="btn-solid-reg mr-3">POST</button>
                             <a class="btn-outline-reg back mt-0" href="{{ route('user.home') }}">BACK</a>
                         </div>
                     </form>
@@ -88,10 +124,8 @@
             </div> <!-- end of col-->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
-</div>
+</div> <!-- end of ex-basic-2 -->
+<!-- end of privacy content -->
 
-@endsection
-
-@section('js')
-    <script src="{{asset('assets/js/user/blog_detail.js')}}"></script>
+@include('user.pages.components.home.blog')
 @endsection

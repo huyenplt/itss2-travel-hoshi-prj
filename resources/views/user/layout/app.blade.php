@@ -39,6 +39,7 @@
     <script src="{{ asset('web/js/isotope.pkgd.min.js') }}"></script> <!-- Isotope for filter -->
     <script src="{{ asset('web/js/validator.min.js') }}"></script> <!-- Validator.js') }} - Bootstrap plugin that validates forms -->
     <script src="{{ asset('web/js/scripts.js') }}"></script> <!-- Custom scripts -->
+    <script src="{{ asset('assets/js/user/place.js') }}"></script>
     @yield('js')
 </body>
 </html>

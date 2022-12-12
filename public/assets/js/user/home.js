@@ -41,7 +41,7 @@ $(document).ready(function(){
 
     // before submit form create blog
     $('form').submit(function() {
-        $("textarea").val($("#content").text())
+        $(".d-content textarea").val($("#content").text())
     });
 
     $('.alert').alert()
