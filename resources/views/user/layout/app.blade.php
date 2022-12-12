@@ -18,27 +18,12 @@
 	<!-- Favicon  -->
     <link rel="icon" href="images/favicon.png">
 
-    <link rel="stylesheet" href="{{ asset('web/css/app.css') }}" />
-    <link rel="stylesheet" href="{{asset('assets/css/user/app.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/user/app.css') }}" />
 
     @yield('css')
     @yield('title')
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
-
-    <!-- Preloader -->
-    <div class="spinner-wrapper">
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-        </div>
-    </div>
-    <!-- end of preloader -->
-
-    <!-- Navbar -->
-    @include('user.layout.navbar')
-    <!-- end of navbar -->
 
     @yield('content')
 

@@ -33,6 +33,11 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
         return $places;
     }
 
+    public function all() {
+        $query = Place::query();
+        return $query;
+    }
+
     public function search($data = []) {
         $address = $data['address'] ?? null;
         $season = $data['season'] ?? 0;
@@ -54,14 +59,14 @@ class PlaceServiceImpl extends BaseServiceImpl implements PlaceService
             if ($season != 0) {
                 $places = $places->where('blogs.season', $season);
             }
-                
+
             if (!is_null($price)) {
                 $places = $places->where('blogs.price', $price);
             }
         }
-            
+
         $places = $places->paginate(10);
-        
+
         return $places;
     }
 

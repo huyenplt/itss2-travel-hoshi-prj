@@ -3,7 +3,7 @@
     <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Aria</a> -->
 
     <!-- Image Logo -->
-    <a class="navbar-brand logo-image d-flex align-items-center" href="index.html">
+    <a class="navbar-brand logo-image d-flex align-items-center" href="{{ route('user.home') }}">
         <img class="w-100 mr-1" src="{{asset('web/images/favicon.png') }}" alt="alternative">
         <span>Travel Hoshi</span>
     </a>
@@ -21,7 +21,7 @@
                 <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link page-scroll" href="#intro">TOUR</a>
+                <a class="nav-link page-scroll" href="#intro">DESTINATION</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link page-scroll" href="#services">BlOG REVIEW</a>

@@ -29,6 +29,10 @@ class HomeController extends Controller
 
         $places = $this->placeService->search($data);
 
+        if ($request->ajax()) {
+            return view('user.pages.components.place.list', compact('places', 'address', 'season', 'price'));
+        }
+
         return view('user.pages.home.index', compact('places', 'address', 'season', 'price'));
     }
 }

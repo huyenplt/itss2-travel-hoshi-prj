@@ -1,4 +1,4 @@
-@extends('user.layout.index')
+@extends('user.layout.app')
 
 @section('title')
     <title>Login/Sign in</title>

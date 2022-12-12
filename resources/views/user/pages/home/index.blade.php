@@ -1,45 +1,53 @@
-@extends('user.layout.app')
-
 @php
     use App\Enums\Season;
 @endphp
 
+@extends('user.layout.page')
+
 @section('title')
-    <title>Home</title>
+<title>Homee</title>
 @endsection
 
-@section('content')
-    @include('user.pages.components.helper.alert')
-
-    <!-- Header -->
+@section('header')
     @include('user.layout.header')
-    <!-- end of header -->
-    
-    <!-- Intro -->
-    <div id="intro" class="basic-1">
-        <form action="">
-            <input type="text" name="address" value="{{$address ?? ''}}" placeholder="Nhập tỉnh hoặc địa điểm du lịch">
-            <select class="form-control" name="season" id="season">
-                <option value="0">Nothing</option>  
-                @foreach (Season::cases() as $season_select)
-                    <option class="uppercase" {{$season == $season_select->value ? 'selected' : '' }} value="{{ $season_select->value }}">{{ $season_select->name }}</option>
-                @endforeach
-            </select>
-            <input type="number" min="0" name="price" placeholder="Nhập giá" value="{{$price ?? ''}}" />VNĐ<br/>
-            <button type="submit">Search</button>
-        </form>
-        <div class="container">
-            @foreach ($places as $place)
-                @if (count($place->placeImages))
-                    <img src="{{asset($place->placeImages[0]->file_path)}}" /> 
-                @else
-                    Không có ảnh
-                @endif
-                <a href="{{asset(route('user.place.index', ['place' => urlencode($place->name)]))}}">{{$place->name}}</a><br/>
-            @endforeach
-        </div> <!-- end of container -->
-    </div> <!-- end of basic-1 -->
-    <!-- end of intro -->
+@endsection
+<!-- end of header -->
 
-    {!! $places->links('user.pages.components.helper.paginate') !!}
+@section('section')
+<!-- Intro -->
+<div id="intro" class="basic-1">
+    <form class="container user-place-search" action="">
+        <div class="form-row mb-2 p-1">
+            <div class="form-group col-md-6">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{$address ?? ''}}" placeholder="Where do you want to go?">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="season">Season</label>
+                <select id="season" name="season" class="form-control">
+                    <option value="0">Season...</option>
+                    @foreach (Season::cases() as $season_select)
+                        <option class="uppercase" {{ $season == $season_select->value ? 'selected' : '' }} value="{{ $season_select->value }}">{{ $season_select->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" id="price" name="price" value="{{$price ?? ''}}">
+            </div>
+            <div class="form-group col-md-1 d-flex flex-column justify-content-end">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    <div class="container place-list" id="tag_container">
+        @include('user.pages.components.place.list')
+    </div> <!-- end of container -->
+
+    {!! app('request')->input('query')? null : $places->links('user.pages.components.helper.paginate') !!}
+
+</div> <!-- end of basic-1 -->
+<!-- end of intro -->
+
+@include('user.pages.components.home.blog')
 @endsection
