@@ -40,4 +40,9 @@ class Place extends Model
             $place->placeImages()->delete();
         });
     }
+
+    public function countLikes()
+    {
+        return $this->userPlaceFavourites()->count();
+    }
 }
