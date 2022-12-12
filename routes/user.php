@@ -53,6 +53,7 @@ Route::middleware(['role:user'])->group(function () {
         'prefix' => 'favourite',
         'as' => 'favourite.'
     ], function () {
-        Route::post('update', [PlaceFavouriteController::class, 'store'])->name('store');
+        Route::get('like/{place}', [PlaceFavouriteController::class, 'like'])->name('like');
+        Route::get('dislike/{place}', [PlaceFavouriteController::class, 'dislike'])->name('dislike');
     });
 });

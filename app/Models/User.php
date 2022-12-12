@@ -78,4 +78,9 @@ class User extends Authenticatable
     {
         return $this->role->name == $role;
     }
+
+    public function liked(Place $place)
+    {
+        return $this->userPlaceFavourites()->where('place_id', '=', $place->id)->first();
+    }
 }

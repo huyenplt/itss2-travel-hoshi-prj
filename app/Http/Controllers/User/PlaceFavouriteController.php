@@ -7,6 +7,7 @@ use App\Services\Interfaces\UserPlaceFavouriteService;
 use App\Http\Requests\User\PlaceFavourite\UpdatePlaceFavoriteRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserPlaceFavourite;
+use App\Models\Place;
 
 class PlaceFavouriteController extends Controller
 {
@@ -17,17 +18,43 @@ class PlaceFavouriteController extends Controller
         $this->userPlaceFavouriteService = $userPlaceFavouriteService;
     }
 
-    public function store(UpdatePlaceFavoriteRequest $request)
+    // public function store(UpdatePlaceFavoriteRequest $request)
+    // {
+    //     $validated = $request->validated();
+    //     $user = Auth::user();
+    //     $placeFavourite = UserPlaceFavourite::firstOrCreate([
+    //         'user_id'   => $user->id,
+    //         'place_id' => $validated['place_id']
+    //     ]);
+    //     if($request['like'] == 0) {
+    //         $placeFavourite->delete();
+    //     }
+    //     return redirect()->back();
+    // }
+
+    public function like(Place $place)
     {
-        $validated = $request->validated();
         $user = Auth::user();
-        $placeFavourite = UserPlaceFavourite::firstOrCreate([
-            'user_id'   => $user->id,
-            'place_id' => $request['place_id']
-        ]);
-        if($request['like'] == 0) {
+        if($user->can('like', $place))
+        {
+            $placeFavourite = UserPlaceFavourite::firstOrCreate([
+                'user_id'   => $user->id,
+                'place_id' => $place->id
+            ]);
+        }
+        return redirect()->route('user.home');
+    }
+
+    public function dislike(Place $place)
+    {
+        $user = Auth::user();
+        if ($user->cannot('like', $place)) {
+            $placeFavourite = UserPlaceFavourite::firstOrCreate([
+                'user_id'   => $user->id,
+                'place_id' => $place->id
+            ]);
             $placeFavourite->delete();
         }
-        return redirect()->back();
+        return redirect()->route('user.home');
     }
 }
