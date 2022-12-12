@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Blog;
+use App\Services\Interfaces\UserBlogVoteService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -19,12 +21,14 @@ class BlogController extends Controller
     protected $blogService;
     protected $blogImageService;
     protected $placeService;
+    protected $userBlogVote;
 
-    public function __construct(BlogService $blogService, BlogImageService $blogImageService, PlaceService $placeService)
+    public function __construct(BlogService $blogService, BlogImageService $blogImageService, PlaceService $placeService, UserBlogVoteService $userBlogVote)
     {
         $this->blogService = $blogService;
         $this->blogImageService = $blogImageService;
         $this->placeService = $placeService;
+        $this->userBlogVote = $userBlogVote;
     }
 
     public function index()
@@ -38,7 +42,8 @@ class BlogController extends Controller
         $blog = $this->blogService->find($id);
         $place = $blog->place->name;
         $comments = $blog->userBlogComments;
-        return view('user.pages.blog.detail', compact('blog', 'place', 'comments'));
+        $userBlogVote = $this->userBlogVote->getBlogVote($id, Auth::user()->id);
+        return view('user.pages.blog.detail', compact('blog', 'place', 'comments', 'userBlogVote'));
     }
 
     public function showByPlace($id)
@@ -97,5 +102,38 @@ class BlogController extends Controller
         $user = Auth::user();
         $blogs = $user->blogs;
         return view('user.pages.blog.my', compact('blogs'));
+    }
+
+    public function vote(Request $request) {
+        if ($request->ajax()) {
+            $userBlogVote = $this->userBlogVote->getBlogVote($request->blog_id, Auth::user()->id);
+            $data = [
+                'vote' => $request->vote
+            ];
+
+            if ($userBlogVote) {
+                if ($userBlogVote->update($data)) {
+                    return response()->json([
+                        'message' => 'Update vote thành công'
+                    ]);
+                }
+            } else {
+                $data['blog_id'] = $request->blog_id;
+                $data['user_id'] = Auth::user()->id;
+                if ($this->userBlogVote->create($data)) {
+                    return response()->json([
+                        'message' => 'Vote thành công'
+                    ]);
+                }
+            }
+
+            return response()->json([
+                'message' => 'Vote thất bại'
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Không hỗ trợ method này'
+        ]);
     }
 }

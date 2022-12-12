@@ -38,6 +38,7 @@ Route::middleware(['role:user'])->group(function () {
         Route::get('{blog}/remove', [BlogController::class, 'delete'])->name('remove');
         Route::get('', [BlogController::class, 'index'])->name('index');
         Route::get('detail/{id}', [BlogController::class, 'show'])->name('detail');
+        Route::post('detail/{id}', [BlogController::class, 'vote'])->name('detail');
         Route::get('place/{id}', [BlogController::class, 'showByPlace'])->name('show_by_place');
         Route::get('my', [BlogController::class, 'showMyBlogs'])->name('show_my_blogs');
     });
