@@ -7,9 +7,6 @@ use App\Http\Requests\User\Comment\CreateCommentRequest;
 use App\Services\Interfaces\UserBlogCommentService;
 use App\Models\UserBlogComment;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-
 class CommentController extends Controller
 {
     protected $userBlogCommentService;

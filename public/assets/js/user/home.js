@@ -48,49 +48,29 @@ $(document).ready(function(){
 
     $(document).on('click', '.pagination a',function(event) {
         event.preventDefault();
-
         $('li').removeClass('active');
         $(this).parent('li').addClass('active');
 
         var page=$(this).attr('href').split('page=')[1];
 
-        getData(page);
+        handleSearch(page);
     });
 
     $('.user-place-search').submit(function(event) {
         event.preventDefault();
 
-        const address = $('.user-place-search #address').val();
-        const season = $('.user-place-search #season').val();
-        const price = $('.user-place-search #price').val();
-
-        if(address.length || season || price.length) {
-            $('.pagination').addClass('d-none')
-        }
-        else $('.pagination').removeClass('d-none')
-
-        handleSearch(address, season, price);
+        handleSearch();
     });
 
 });
 
-function getData(page){
-    $.ajax(
-    {
-        url: '?page=' + page,
-        type: "get",
-        datatype: "html"
-    }).done(function(data){
-        $("#tag_container").empty().html(data);
-        location.hash = page;
-    }).fail(function(jqXHR, ajaxOptions, thrownError){
-          alert('No response from server');
-    });
-}
+function handleSearch(page = 1) {
+    const address = $('.user-place-search #address').val();
+    const season = $('.user-place-search #season').val();
+    const price = $('.user-place-search #price').val();
 
-function handleSearch(address, season, price) {
     $.ajax({
-        url: '?address=' + address + '&season=' + season +  '&price=' + price,
+        url: '?address=' + address + '&season=' + season +  '&price=' + price + '&page=' + page,
         type: "get",
         datatype: "html"
     }).done(function(data){

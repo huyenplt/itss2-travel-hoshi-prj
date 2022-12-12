@@ -1,3 +1,5 @@
+
+{!! app('request')->input('query')? null : $places->links('user.pages.components.helper.paginate') !!}
 @foreach ($places as $place)
     <div class="place-item">
         <a href="{{route('user.blog.show_by_place', ['id' => urlencode($place->id)])}}" class="image-container place-item__img">
@@ -19,3 +21,4 @@
         </div>
     </div>
 @endforeach
+{!! app('request')->input('query')? null : $places->links('user.pages.components.helper.paginate') !!}

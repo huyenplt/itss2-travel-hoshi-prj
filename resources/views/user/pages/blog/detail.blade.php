@@ -61,10 +61,11 @@
                 </div> <!-- end of text-container-->
                 <div class="text-container">
                     <h5>Post a comment: </h5>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{route('user.comment.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="blog_id" value="{{$blog->id}}">
                         <div class="form-group">
-                            <textarea name="content" class="w-100 p-3" style="height: 150px" placeholder="Your comment..."></textarea>
+                            <input name="comment" data-validation="required" class="w-100 p-3" style="height: 150px" placeholder="Your comment..." />
                         </div>
 
                         <div class="d-flex justify-content-end align-items-center">
@@ -116,14 +117,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <a class="btn-outline-reg back" href="{{ route('user.home') }}">BACK</a> -->
-                <form action="{{route('user.comment.store')}}" method="post">
-                    @csrf
-                    <input type="hidden" name="blog_id" value="{{$blog->id}}">
-                    <input type="text" name="comment">
-                    <button type="submit">Comment</button>
-                </form>
-                <a class="btn-outline-reg back" href="{{ route('user.home') }}">BACK</a>
             </div> <!-- end of col-->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
