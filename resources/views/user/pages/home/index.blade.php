@@ -44,8 +44,6 @@
         @include('user.pages.components.place.list')
     </div> <!-- end of container -->
 
-    {!! app('request')->input('query')? null : $places->links('user.pages.components.helper.paginate') !!}
-
 </div> <!-- end of basic-1 -->
 <!-- end of intro -->
 

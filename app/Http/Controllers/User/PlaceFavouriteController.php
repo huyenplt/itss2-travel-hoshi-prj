@@ -42,7 +42,6 @@ class PlaceFavouriteController extends Controller
                 'place_id' => $place->id
             ]);
         }
-        // return view('user.pages.blog.list');
     }
 
     public function dislike(Place $place)
@@ -55,6 +54,5 @@ class PlaceFavouriteController extends Controller
             ]);
             $placeFavourite->delete();
         }
-        // return view('user.pages.blog.list');
     }
 }

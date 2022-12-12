@@ -1,3 +1,5 @@
+
+{!! app('request')->input('query')? null : $places->links('user.pages.components.helper.paginate') !!}
 @foreach ($places as $place)
     <div class="place-item">
         <a href="{{route('user.place.index', ['address' => urlencode($place->address)])}}" class="image-container place-item__img">
@@ -5,7 +7,7 @@
         </a>
         <div class="place-item-content">
             <div class="d-flex">
-                <a href="{{route('user.place.index', ['address' => urlencode($place->address)])}}"><h5 class="place-item-content__title mr-3">{{ $place->name }}</h5></a>
+                <a href="{{route('user.place.index', ['place' => urlencode($place->name)])}}"><h5 class="place-item-content__title mr-3">{{ $place->name }}</h5></a>
                 <div class="place-item-content__like">
                     <i class="fas fa-heart"></i>
                     <span>{{ $place->countLikes() }}</span>
@@ -19,3 +21,4 @@
         </div>
     </div>
 @endforeach
+{!! app('request')->input('query')? null : $places->links('user.pages.components.helper.paginate') !!}
