@@ -33,7 +33,7 @@ class BlogController extends Controller
         return view('user.pages.blog.index', compact('data'));
     }
 
-    public function show($id)
+    public function show($id = null)
     {
         $blog = $this->blogService->find($id);
         $place = $blog->place->name;

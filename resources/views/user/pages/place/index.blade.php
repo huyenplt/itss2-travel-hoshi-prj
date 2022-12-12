@@ -6,10 +6,10 @@
 @endsection
 
 @section('section')
-    <a href="#create-blog" class="btn-solid-lg page-scroll p-3 mr-2 popup-with-move-anim">+   Create new blog</a>
     <!-- Intro -->
     <div id="intro" class="basic-1">
-        <h1>{{$place->name}}rrrr</h1>
+        <a href="#create-blog" class="btn-solid-lg page-scroll p-3 mr-2 popup-with-move-anim">+   Create new blog</a>
+        <h1>{{$place->name}}</h1>
         @foreach ($place->placeImages as $placeImage)
             <img class="place-img" src="{{asset($placeImage->file_path)}}" />
         @endforeach
