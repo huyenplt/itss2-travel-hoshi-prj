@@ -24,13 +24,10 @@
                 <a class="nav-link page-scroll" href="#intro">DESTINATION</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link page-scroll" href="#services">BlOG REVIEW</a>
+                <a class="nav-link page-scroll" href="#blog">BlOG REVIEW</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link page-scroll" href="#callMe">IMAGE</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link page-scroll" href="#projects">VOUCHER</a>
+                <a class="nav-link page-scroll" href="#voucher">VOUCHER</a>
             </li>
 
             <!-- Dropdown Menu -->
