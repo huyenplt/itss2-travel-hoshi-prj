@@ -6,4 +6,5 @@ use App\Services\Interfaces\BaseService;
 
 interface UserBlogVoteService extends BaseService
 {
+    public function getBlogVote($blog_id, $user_id);
 }

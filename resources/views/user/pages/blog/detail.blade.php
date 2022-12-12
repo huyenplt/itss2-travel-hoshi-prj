@@ -63,7 +63,7 @@
                     <h5>Post a comment: </h5>
                     <form action="{{route('user.comment.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="blog_id" value="{{$blog->id}}">
+                        <input type="hidden" id="blog_id" name="blog_id" value="{{$blog->id}}">
                         <div class="form-group">
                             <input name="comment" data-validation="required" class="w-100 p-3" style="height: 150px" placeholder="Your comment..." />
                         </div>
@@ -83,31 +83,31 @@
                             <div class="rating-wrapper">
 
                                 <!-- star 5 -->
-                                <input type="radio" id="5-star-rating" name="star-rating" value="5">
+                                <input type="radio" id="5-star-rating" {{$userBlogVote && $userBlogVote->vote == 5 ? 'checked' : ''}} name="star-rating" value="5">
                                 <label for="5-star-rating" class="star-rating">
                                     <i class="fas fa-star d-inline-block"></i>
                                 </label>
 
                                 <!-- star 4 -->
-                                <input type="radio" id="4-star-rating" name="star-rating" value="4">
+                                <input type="radio" id="4-star-rating" {{$userBlogVote && $userBlogVote->vote == 4 ? 'checked' : ''}} name="star-rating" value="4">
                                 <label for="4-star-rating" class="star-rating star">
                                     <i class="fas fa-star d-inline-block"></i>
                                 </label>
 
                                 <!-- star 3 -->
-                                <input type="radio" id="3-star-rating" name="star-rating" value="3">
+                                <input type="radio" id="3-star-rating" {{$userBlogVote && $userBlogVote->vote == 3 ? 'checked' : ''}} name="star-rating" value="3">
                                 <label for="3-star-rating" class="star-rating star">
                                     <i class="fas fa-star d-inline-block"></i>
                                 </label>
 
                                 <!-- star 2 -->
-                                <input type="radio" id="2-star-rating" name="star-rating" value="2">
+                                <input type="radio" id="2-star-rating" {{$userBlogVote && $userBlogVote->vote == 2 ? 'checked' : ''}} name="star-rating" value="2">
                                 <label for="2-star-rating" class="star-rating star">
                                     <i class="fas fa-star d-inline-block"></i>
                                 </label>
 
                                 <!-- star 1 -->
-                                <input type="radio" id="1-star-rating" name="star-rating" value="1">
+                                <input type="radio" id="1-star-rating" {{$userBlogVote && $userBlogVote->vote == 1 ? 'checked' : ''}} name="star-rating" value="1">
                                 <label for="1-star-rating" class="star-rating star">
                                     <i class="fas fa-star d-inline-block"></i>
                                 </label>
@@ -123,5 +123,8 @@
 </div> <!-- end of ex-basic-2 -->
 <!-- end of privacy content -->
 
-@include('user.pages.components.home.blog')
+@endsection
+
+@section('js')
+    <script src="{{asset('assets/js/user/blog_detail.js')}}"></script>
 @endsection
