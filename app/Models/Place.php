@@ -18,6 +18,14 @@ class Place extends Model
 
     protected $guarded = [];
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($place) { // before delete() method call this
+            $place->placeImages()->delete();
+        });
+    }
+
     public function placeImages()
     {
         return $this->hasMany(PlaceImage::class);
@@ -31,14 +39,6 @@ class Place extends Model
     public function blogs()
     {
         return $this->hasMany(Blog::class);
-    }
-
-    public static function boot() {
-        parent::boot();
-
-        static::deleting(function($place) { // before delete() method call this
-            $place->placeImages()->delete();
-        });
     }
 
     public function countLikes()

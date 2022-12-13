@@ -26,6 +26,16 @@ class Blog extends Model
         'season' => Season::class,
     ];
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($blog) { // before delete() method call this
+            $blog->blogImages()->delete();
+            $blog->userBlogVotes()->delete();
+            $blog->userBlogComments()->delete();
+        });
+    }
+
     public function blogImages()
     {
         return $this->hasMany(BlogImage::class);
