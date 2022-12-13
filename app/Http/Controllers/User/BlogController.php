@@ -91,9 +91,9 @@ class BlogController extends Controller
 
     public function delete(Blog $blog)
     {
-        if (Auth::user()->can('delete', $blog)) {
+        if ($this->authorize('delete', $blog)) {
             if ($this->blogService->delete($blog->id)) {
-                return back()->with('success', 'Delete success');
+                return redirect()->route('user.place.index')->with('success', 'Delete success');
             }
             return back()->with('error', 'Delete failed!');
         } else abort(403);

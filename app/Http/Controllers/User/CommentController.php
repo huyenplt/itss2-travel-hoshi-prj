@@ -35,7 +35,7 @@ class CommentController extends Controller
 
     public function delete(UserBlogComment $comment)
     {
-        if (Auth::user()->can('delete', $comment)) {
+        if ($this->authorize('delete', $comment)) {
             if ($this->userBlogCommentService->delete($comment->id)) {
                 return back()->with('success', 'Delete success');
             }
