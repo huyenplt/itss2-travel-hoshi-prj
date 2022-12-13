@@ -39,11 +39,11 @@ class BlogController extends Controller
 
     public function show($id = null)
     {
-        $rating = 3.4;
         $blog = $this->blogService->find($id);
         $place = $blog->place->name;
         $comments = $blog->userBlogComments;
         $userBlogVote = $this->userBlogVote->getBlogVote($id, Auth::user()->id);
+        $rating = $this->userBlogVote->getRatingBlog($id)->rating;
         return view('user.pages.blog.detail', compact('blog', 'place', 'comments', 'userBlogVote', 'rating'));
     }
 

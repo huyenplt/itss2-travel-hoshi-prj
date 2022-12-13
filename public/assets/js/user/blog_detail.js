@@ -15,7 +15,7 @@ function insertVote (numverStar) {
             vote: numverStar
         }
     }).done(function(data){
-        console.log(data.message)
+        alert('Vote thành công')
     }).fail(function(jqXHR, ajaxOptions, thrownError){
         alert('No response from server');
     });

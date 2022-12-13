@@ -46,13 +46,13 @@
 
                 <div class="text-container rating d-flex align-items-center">
                     <h5 class="mr-2 mb-0">Rating: </h5>
-                    @for ($i = 0; $i < floor($rating); $i++)
+                    @for ($i = 0; $i < round($rating); $i++)
                         <i class="fas fa-star mr-1 d-inline-block checked"></i>
                     @endfor
-                    @for ($i = floor($rating); $i < 5; $i++)
+                    @for ($i = round($rating); $i < 5; $i++)
                         <i class="fas fa-star mr-1 d-inline-block"></i>
                     @endfor
-                    <div class="rating__txt ml-2">{{ $rating }} average based on 254 reviews.</div>
+                    <div class="rating__txt ml-2">{{ $rating }} average based on {{ count($blog->userBlogVotes) }} reviews.</div>
 
                 </div> <!-- end of text-container-->
                 <div class="text-container comments">
