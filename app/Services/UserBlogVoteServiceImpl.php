@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\UserBlogVote;
 use App\Services\BaseServiceImpl;
 use App\Services\Interfaces\UserBlogVoteService;
+use Illuminate\Support\Facades\DB;
 
 class UserBlogVoteServiceImpl extends BaseServiceImpl implements UserBlogVoteService
 {
@@ -17,5 +18,12 @@ class UserBlogVoteServiceImpl extends BaseServiceImpl implements UserBlogVoteSer
         return $this->model->where('user_id', $user_id)
             ->where('blog_id', $blog_id)
             ->first();
+    }
+
+    public function getRatingBlog($blog_id) {
+        return $this->model->select(DB::raw('round(AVG(vote), 1) as rating'))
+        ->where('blog_id', $blog_id)
+        ->groupBy('blog_id')
+        ->first();
     }
 }
