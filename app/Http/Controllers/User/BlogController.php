@@ -43,7 +43,7 @@ class BlogController extends Controller
         $place = $blog->place->name;
         $comments = $blog->userBlogComments;
         $userBlogVote = $this->userBlogVote->getBlogVote($id, Auth::user()->id);
-        $rating = $this->userBlogVote->getRatingBlog($id)->rating;
+        $rating = $this->userBlogVote->getRatingBlog($id);
         return view('user.pages.blog.detail', compact('blog', 'place', 'comments', 'userBlogVote', 'rating'));
     }
 

@@ -21,9 +21,15 @@ class UserBlogVoteServiceImpl extends BaseServiceImpl implements UserBlogVoteSer
     }
 
     public function getRatingBlog($blog_id) {
-        return $this->model->select(DB::raw('round(AVG(vote), 1) as rating'))
-        ->where('blog_id', $blog_id)
-        ->groupBy('blog_id')
-        ->first();
+        $rating_blog = $this->model->select(DB::raw('round(AVG(vote), 1) as rating'))
+            ->where('blog_id', $blog_id)
+            ->groupBy('blog_id')
+            ->first();
+
+        if ($rating_blog) {
+            return $rating_blog->rating;
+        }
+
+        return 0;
     }
 }
