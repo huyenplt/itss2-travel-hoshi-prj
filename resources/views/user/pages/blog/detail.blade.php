@@ -61,6 +61,9 @@
                     <div class="comment d-flex">
                         <h6 class="comment__user">{{$comment->user->name}}: </h6>
                         <p class="comment__content ml-3">{{$comment->comment}}</p>
+                        @if(Auth::user()->can('delete', $comment))
+                        <a href="{{route('user.comment.delete', ['comment' => $comment])}}" class="comment-delete-btn ml-1" type="submit" data-toggle="tooltip" data-placement="top" title="Delete this comment"><i class="fas fa-times"></i></a>
+                        @endif
                     </div>
                     @endforeach
                 </div> <!-- end of text-container-->

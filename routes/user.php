@@ -48,6 +48,7 @@ Route::middleware(['role:user'])->group(function () {
         'as' => 'comment.'
     ], function () {
         Route::post('create', [CommentController::class, 'store'])->name('store');
+        Route::get('remove/{comment}', [CommentController::class, 'delete'])->name('delete');
     });
 
     Route::group([

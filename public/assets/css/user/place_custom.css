@@ -141,6 +141,16 @@ img {
     margin-bottom: 0;
 }
 
+.comment:hover .comment-delete-btn {
+    display: inline-block;
+}
+
+.comment-delete-btn {
+    font-size: 12px;
+    display: none;
+    margin-left: 10px;
+}
+
 @media screen and (min-width: 768px) {
     .place-slider .card {
         height: 200px;
